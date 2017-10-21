@@ -1,8 +1,6 @@
-package com.liveasy.core.model;
+package com.liveasy.demo.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,6 +31,7 @@ public class User {
     private int active;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OrderBy("id")
     private Set<House> houses = new HashSet<>();
     @Enumerated(value = EnumType.STRING)
     private Role role;

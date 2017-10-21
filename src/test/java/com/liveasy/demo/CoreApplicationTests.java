@@ -1,4 +1,4 @@
-package com.liveasy.core;
+package com.liveasy.demo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
