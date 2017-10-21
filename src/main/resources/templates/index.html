@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -20,6 +20,8 @@
 <body>
 
 <div class="container-fluid" style="margin-top: 20px">
+
+
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
@@ -43,13 +45,22 @@
                                 <td th:text="${user.firstName}">Tasty Goodnees 3</td>
                                 <td th:text="${user.lastName}">Tasty Goodnees 3</td>
                                 <td><a href="#" th:href="@{'/user/show/' + ${user.id}}">View</a></td>
+                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/update'}">Update</a></td>
                             </tr>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+
+        <input type="button" class="btn btn-info text-center" value="Create new User!" onclick="location.href = '/user/new';"
+               style="margin: 0px 0px 40px 0px">
+
     </div>
+
+
+
+
 </div>
 
 </body>

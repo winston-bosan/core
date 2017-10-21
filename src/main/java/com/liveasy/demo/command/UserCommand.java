@@ -20,6 +20,7 @@ public class UserCommand {
     private String password;
     private String firstName;
     private String lastName;
+    private String description;
     private int active;
     private Set<House> houses = new HashSet<>();
     private Role role;

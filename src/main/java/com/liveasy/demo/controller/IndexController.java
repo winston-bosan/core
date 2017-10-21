@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
+import java.util.Set;
 
 @Controller
 @Slf4j
@@ -24,7 +24,7 @@ public class IndexController {
     @GetMapping({"/","/main"})
     public String getIndex(Model model){
 
-        List<User> test = userService.getAllUsers();
+        Set<User> test = userService.getAllUsers();
         model.addAttribute("users" , test);
 
         return "index";

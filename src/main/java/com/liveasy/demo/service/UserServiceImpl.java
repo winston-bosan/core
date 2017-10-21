@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -28,9 +30,10 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public Set<User> getAllUsers() {
         Set<User> test = new HashSet<>( (Collection) userRepository.findAll());
-        return new ArrayList<>(test);
+        //return new ArrayList<>(test);
+        return test;
     }
 
     @Override
@@ -53,4 +56,8 @@ public class UserServiceImpl implements UserService{
         return userToUserCommand.convert(savedUser);
     }
 
+    @Override
+    public UserCommand findCommandById(Long l) {
+        return userToUserCommand.convert(findById(l));
+    }
 }

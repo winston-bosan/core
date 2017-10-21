@@ -39,9 +39,9 @@ public class Bootstraper implements ApplicationListener<ContextRefreshedEvent> {
         House firstHouseA = new House("4 Suncrest Drive",4,3,4000,1995);
 
         User frank = new User();
-        frank.setFirstName("Frank"); frank.setLastName("Fang");
+        frank.setFirstName("Frank"); frank.setLastName("Fang"); frank.setDescription("Hello I am frank!");
         User jerry = new User();
-        jerry.setFirstName("Jerry"); jerry.setLastName("Wilhelm");
+        jerry.setFirstName("Jerry"); jerry.setLastName("Wilhelm"); jerry.setDescription("Guten Tag, Ich bin Jerry");
 
 
         frank.addHouse(firstHouse);

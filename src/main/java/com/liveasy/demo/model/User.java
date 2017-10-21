@@ -29,6 +29,7 @@ public class User {
     private String firstName;
     private String lastName;
     private int active;
+    private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @OrderBy("id")
@@ -36,15 +37,20 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        User user = (User) o;
 
+        return id.equals(user.id);
+    }
 
-
-
-
-
-
-
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 
     public Long getId() {
         return id;
@@ -92,6 +98,14 @@ public class User {
 
     public void setActive(int active) {
         this.active = active;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Set<House> getHouses() {

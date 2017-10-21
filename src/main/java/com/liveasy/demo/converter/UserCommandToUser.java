@@ -27,6 +27,8 @@ public class UserCommandToUser implements Converter<UserCommand,User> {
         user.setHouses(source.getHouses());
         user.setPassword(source.getPassword());
         user.setRole(source.getRole());
+        user.setDescription(source.getDescription());
+
 
         return user;
 
