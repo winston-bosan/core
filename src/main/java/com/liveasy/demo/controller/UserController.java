@@ -44,14 +44,13 @@ public class UserController {
     }
 
     @PostMapping
-    @RequestMapping("user")
+    @RequestMapping("/user/")
     public String saveOrUpdate(@ModelAttribute UserCommand command){
         UserCommand saveCommand = userService.saveUserCommand(command);
         return"redirect:/user/show/" + saveCommand.getId();
     }
 
-    @GetMapping
-    @RequestMapping("user/{id}/delete")
+    @GetMapping("user/{id}/delete")
     public String deleteById(@PathVariable String id){
         log.debug("Deleting Id: " + id);
         userService.deleteById(Long.valueOf(id));

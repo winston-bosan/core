@@ -15,7 +15,8 @@ public class UserToUserCommand implements Converter<User,UserCommand> {
     @Override
     @Synchronized
     public UserCommand convert(User source) {
-        if(source == null){return null;}
+        //todo think of a good a way to do checknull logic
+        //if(source.getId() == null){return null;}
 
         UserCommand userCommand = new UserCommand();
 
@@ -28,6 +29,7 @@ public class UserToUserCommand implements Converter<User,UserCommand> {
         userCommand.setPassword(source.getPassword());
         userCommand.setRole(source.getRole());
         userCommand.setDescription(source.getDescription());
+        userCommand.setPurpose(source.getPurpose());
 
 
         return userCommand;

@@ -3,10 +3,13 @@ package com.liveasy.demo.service;
 import com.liveasy.demo.command.HouseCommand;
 import com.liveasy.demo.model.House;
 
-public interface HouseService {
+import java.util.Set;
 
+public interface HouseService {
+    Set<House> getAllHouses();
     House findByUserIdAndHouseId(Long userId, Long houseId);
     HouseCommand findCommandByUserIdAndHouseId(Long userId, Long houseId);
     HouseCommand saveHouseCommand(HouseCommand command);
+    void deleteById(Long l);
 
 }

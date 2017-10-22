@@ -1,6 +1,7 @@
 package com.liveasy.demo.controller;
 
 import com.liveasy.demo.command.UserCommand;
+import com.liveasy.demo.converter.HouseToHouseCommand;
 import com.liveasy.demo.service.HouseService;
 import com.liveasy.demo.service.UserService;
 import org.junit.Before;
@@ -21,13 +22,15 @@ public class HouseControllerTest {
     UserService userService;
     @Mock
     HouseService houseService;
+    @Mock
+    HouseToHouseCommand houseToHouseCommand;
     HouseController houseController;
     MockMvc mockMvc;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        houseController = new HouseController(userService, houseService);
+        houseController = new HouseController(userService, houseService, houseToHouseCommand);
         mockMvc = MockMvcBuilders.standaloneSetup(houseController).build();
     }
 

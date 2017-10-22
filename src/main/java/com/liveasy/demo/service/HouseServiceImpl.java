@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 @Service
@@ -22,16 +25,21 @@ public class HouseServiceImpl implements HouseService{
     private final HouseCommandToHouse houseCommandToHouse;
     private final HouseRepository houseRepository;
     private final UserRepository userRepository;
+    private final UserService userService;
 
     @Autowired
-    public HouseServiceImpl(HouseToHouseCommand houseToHouseCommand, HouseCommandToHouse houseCommandToHouse, HouseRepository houseRepository, UserRepository userRepository) {
+    public HouseServiceImpl(HouseToHouseCommand houseToHouseCommand, HouseCommandToHouse houseCommandToHouse, HouseRepository houseRepository, UserRepository userRepository, UserService userService) {
         this.houseToHouseCommand = houseToHouseCommand;
         this.houseCommandToHouse = houseCommandToHouse;
         this.houseRepository = houseRepository;
         this.userRepository = userRepository;
+        this.userService = userService;
     }
 
-
+    @Override
+    public Set<House> getAllHouses() {
+        return new HashSet<>( (Collection) houseRepository.findAll());
+    }
 
     @Override
     public House findByUserIdAndHouseId(Long userId, Long houseId) {
@@ -98,7 +106,23 @@ public class HouseServiceImpl implements HouseService{
                 houseFound.setPostal(command.getPostal());
                 houseFound.setCity(command.getCity());
 
-            } else {user.addHouse( houseCommandToHouse.convert(command) );}
+            } else {
+
+                log.debug("Instead, we are creating a new house for " + user.getId());
+                //Getting a new house, then commit/save it, and fish it out with the unique id generated during commit
+                House house = new House();
+                houseRepository.save(house);
+                house = houseRepository.findById(house.getId()).get();
+
+                //Now copying command to house, but with the old id
+                command.setId(house.getId());
+                house = houseCommandToHouse.convert(command);
+                house.setUser(user);
+                user.addHouse(house);
+
+                log.debug("The new house is " + house.toString());
+
+            }
 
             User savedUser = userRepository.save(user);
 
@@ -109,4 +133,20 @@ public class HouseServiceImpl implements HouseService{
         }
 
     }
+
+    @Override
+    public void deleteById(Long l){
+        Optional<House> houseOptional = houseRepository.findById(l);
+        if(!houseOptional.isPresent()){
+            log.debug("Couldn't find house with ID: " + l.toString());
+        } else {
+            House house = houseOptional.get();
+            User user = house.getUser();
+            user.getHouses().remove(house);
+            houseRepository.delete(house);
+            userRepository.save(user);
+        }
+
+    }
+
 }

@@ -34,8 +34,12 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @OrderBy("id")
     private Set<House> houses = new HashSet<>();
+
     @Enumerated(value = EnumType.STRING)
     private Role role;
+    @Enumerated(value = EnumType.STRING)
+    private Purpose purpose;
+
 
     @Override
     public boolean equals(Object o) {
@@ -127,5 +131,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Purpose getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(Purpose purpose) {
+        this.purpose = purpose;
     }
 }

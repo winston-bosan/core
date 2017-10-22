@@ -54,9 +54,50 @@
             </div>
         </div>
 
+
         <input type="button" class="btn btn-info text-center" value="Create new User!" onclick="location.href = '/user/new';"
                style="margin: 0px 0px 40px 0px">
+    </div>
 
+    <!--/*@thymesVar id="houses" type="java.util.Set<com.liveasy.demo.command.HouseCommand>"*/-->
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+                    <h1 class="panel-title" >Houses of Everyone!</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(houses)}">
+                        <table class="table table-hover ">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>ID</th>
+                                <th>Address</th>
+                                <th>Bedrooms</th>
+                                <th>Washrooms</th>
+                                <th>YearBuilt</th>
+                                <th>View</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tr th:each="house : ${houses}">
+                                <td th:text="${house.id}">9001</td>
+                                <td th:text="${house.address}">Error</td>
+                                <td th:text="${house.bedrooms}">Tasty Goodnees 3</td>
+                                <td th:text="${house.washrooms}">Tasty Goodnees 3</td>
+                                <td th:text="${house.yearBuilt}">Tasty Goodnees 3</td>
+                                <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/show' }">View</a></td>
+                                <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/update'}">Update</a></td>
+                                <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/delete'}">Delete</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

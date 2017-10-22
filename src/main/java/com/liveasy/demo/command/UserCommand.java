@@ -1,6 +1,7 @@
 package com.liveasy.demo.command;
 
 import com.liveasy.demo.model.House;
+import com.liveasy.demo.model.Purpose;
 import com.liveasy.demo.model.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,5 +25,6 @@ public class UserCommand {
     private int active;
     private Set<House> houses = new HashSet<>();
     private Role role;
+    private Purpose purpose;
 
 }

@@ -62,8 +62,9 @@
             </div>
         </div>
 
-        <input type="button" class="btn btn-info text-center" value="Create new User!" onclick="location.href = '/user/new';"
-               style="margin: 0px 0px 40px 0px">
+        <input type="button" class="btn btn-info text-center" value="Create new House!"
+               th:href="@{/user/ + ${user.id} + /houses/ + ${house.id} + /show }"
+                style="margin: 0px 0px 40px 0px">
 
     </div>
 

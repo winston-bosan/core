@@ -15,7 +15,8 @@ public class HouseCommandToHouse implements Converter<HouseCommand,House>{
     @Nullable
     @Override
     public House convert(HouseCommand source) {
-        if(source == null){return null;}
+        //todo think of a good a way to do checknull logic
+        //if(source.getId() == null){return null;}
 
         final House house = new House();
         house.setId(source.getId());

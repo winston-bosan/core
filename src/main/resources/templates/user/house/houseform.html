@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <!--/*@thymesVar id="house" type="com.liveasy.demo.command.HouseCommand"*/-->
-            <form  th:object="${house}" th:method="post" th:action="@{'/user/' + ${house.getUser().getId()} + '/houses'} ">
+            <form  th:object="${house}" th:method="post" th:action="@{'/user/' + ${userId} + '/houses'} ">
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{user}"/>
 
