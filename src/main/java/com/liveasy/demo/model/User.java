@@ -1,8 +1,6 @@
-package com.liveasy.core.model;
+package com.liveasy.demo.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,21 +29,32 @@ public class User {
     private String firstName;
     private String lastName;
     private int active;
+    private String description;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OrderBy("id")
     private Set<House> houses = new HashSet<>();
+
     @Enumerated(value = EnumType.STRING)
     private Role role;
+    @Enumerated(value = EnumType.STRING)
+    private Purpose purpose;
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        User user = (User) o;
 
+        return id.equals(user.id);
+    }
 
-
-
-
-
-
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 
     public Long getId() {
         return id;
@@ -95,6 +104,14 @@ public class User {
         this.active = active;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Set<House> getHouses() {
         return houses;
     }
@@ -114,5 +131,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Purpose getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(Purpose purpose) {
+        this.purpose = purpose;
     }
 }

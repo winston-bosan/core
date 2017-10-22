@@ -1,4 +1,4 @@
-package com.liveasy.core.model;
+package com.liveasy.demo.model;
 
 import javax.persistence.*;
 
@@ -13,10 +13,16 @@ public class House {
     private User user;
 
     private String address;
+    private String postal;
+    private String city;
+
+
     private int bedrooms;
     private int washrooms;
     private int area;
     private int yearBuilt;
+
+    public House(){}
 
     public House(String address, int bedrooms, int washrooms, int area, int yearBuilt) {
         this.address = address;
@@ -24,6 +30,21 @@ public class House {
         this.washrooms = washrooms;
         this.area = area;
         this.yearBuilt = yearBuilt;
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "id=" + id +
+                ", user=" + user +
+                ", address='" + address + '\'' +
+                ", postal='" + postal + '\'' +
+                ", city='" + city + '\'' +
+                ", bedrooms=" + bedrooms +
+                ", washrooms=" + washrooms +
+                ", area=" + area +
+                ", yearBuilt=" + yearBuilt +
+                '}';
     }
 
     public Long getId() {
@@ -48,6 +69,22 @@ public class House {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPostal() {
+        return postal;
+    }
+
+    public void setPostal(String postal) {
+        this.postal = postal;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public int getBedrooms() {
@@ -81,4 +118,6 @@ public class House {
     public void setYearBuilt(int yearBuilt) {
         this.yearBuilt = yearBuilt;
     }
+
+
 }

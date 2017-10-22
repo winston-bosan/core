@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<!--/*@thymesVar id="user" type="com.liveasy.demo.model.User"*/-->
+<!--/*@thymesVar id="houses" type="java.util.Set<com.liveasy.demo.command.HouseCommand>"*/-->
+
+<div class="container-fluid" style="margin-top: 20px">
+
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+                    <h1 class="panel-title" th:text="'Houses of ' + ${user.firstName} + ' ' + ${user.lastName}">Houses of !</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(user.houses)}">
+                        <table class="table table-hover ">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>ID</th>
+                                <th>Address</th>
+                                <th>Bedrooms</th>
+                                <th>Washrooms</th>
+                                <th>YearBuilt</th>
+                                <th>View</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                            </thead>
+                            <tr th:each="house : ${user.houses}">
+                                <td th:text="${house.id}">9001</td>
+                                <td th:text="${house.address}">Error</td>
+                                <td th:text="${house.bedrooms}">Tasty Goodnees 3</td>
+                                <td th:text="${house.washrooms}">Tasty Goodnees 3</td>
+                                <td th:text="${house.yearBuilt}">Tasty Goodnees 3</td>
+                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/houses/' + ${house.id} + '/show' }">View</a></td>
+                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/houses/' + ${house.id} + '/update'}">Update</a></td>
+                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/houses/' + ${house.id} + '/delete'}">Delete</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="button" class="btn btn-info text-center" value="Create new House!"
+               th:href="@{/user/ + ${user.id} + /houses/ + ${house.id} + /show }"
+                style="margin: 0px 0px 40px 0px">
+
+    </div>
+
+
+
+
+</div>
+
+</body>
+</html>

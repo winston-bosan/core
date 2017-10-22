@@ -1,4 +1,4 @@
-package com.liveasy.core.model;
+package com.liveasy.demo.model;
 
 public enum Role {
 
