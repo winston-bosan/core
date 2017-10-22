@@ -23,4 +23,18 @@ public class HouseCommand {
     private int area;
     private int yearBuilt;
 
+    @Override
+    public String toString() {
+        return "HouseCommand{" +
+                "id=" + id +
+                ", user=" + user +
+                ", address='" + address + '\'' +
+                ", postal='" + postal + '\'' +
+                ", city='" + city + '\'' +
+                ", bedrooms=" + bedrooms +
+                ", washrooms=" + washrooms +
+                ", area=" + area +
+                ", yearBuilt=" + yearBuilt +
+                '}';
+    }
 }

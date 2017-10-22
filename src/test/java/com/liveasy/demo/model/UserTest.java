@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 public class UserTest {
 
-    User user;
+    private User user;
 
     @Before
     public void setUp(){

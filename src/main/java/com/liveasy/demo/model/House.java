@@ -32,6 +32,21 @@ public class House {
         this.yearBuilt = yearBuilt;
     }
 
+    @Override
+    public String toString() {
+        return "House{" +
+                "id=" + id +
+                ", user=" + user +
+                ", address='" + address + '\'' +
+                ", postal='" + postal + '\'' +
+                ", city='" + city + '\'' +
+                ", bedrooms=" + bedrooms +
+                ", washrooms=" + washrooms +
+                ", area=" + area +
+                ", yearBuilt=" + yearBuilt +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }
@@ -103,4 +118,6 @@ public class House {
     public void setYearBuilt(int yearBuilt) {
         this.yearBuilt = yearBuilt;
     }
+
+
 }

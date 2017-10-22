@@ -18,7 +18,9 @@
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<!--/*@thymesVar id="users" type="java.util.Set<com.liveasy.demo.model.User>"*/-->
+<!--/*@thymesVar id="user" type="com.liveasy.demo.model.User"*/-->
+<!--/*@thymesVar id="houses" type="java.util.Set<com.liveasy.demo.command.HouseCommand>"*/-->
+
 <div class="container-fluid" style="margin-top: 20px">
 
 
@@ -27,26 +29,32 @@
             <div class="panel panel-primary">
 
                 <div class="panel-heading">
-                    <h1 class="panel-title">Everyone There is!</h1>
+                    <h1 class="panel-title" th:text="'Houses of ' + ${user.firstName} + ' ' + ${user.lastName}">Houses of !</h1>
                 </div>
                 <div class="panel-body">
-                    <div class="table-responsive" th:if="${not #lists.isEmpty(users)}">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(user.houses)}">
                         <table class="table table-hover ">
                             <thead class="thead-inverse">
                             <tr>
                                 <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
+                                <th>Address</th>
+                                <th>Bedrooms</th>
+                                <th>Washrooms</th>
+                                <th>YearBuilt</th>
+                                <th>View</th>
+                                <th>Update</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
-                            <tr th:each="user : ${users}">
-                                <!--/*@thymesVar id="user" type="com.liveasy.demo.model.User"*/-->
-                                <td th:text="${user.id}">334</td>
-                                <td th:text="${user.firstName}">Tasty Goodnees 3</td>
-                                <td th:text="${user.lastName}">Tasty Goodnees 3</td>
-                                <td><a href="#" th:href="@{'/user/show/' + ${user.id}}">View</a></td>
-                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/update'}">Update</a></td>
-                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/delete'}">Delete</a></td>
+                            <tr th:each="house : ${user.houses}">
+                                <td th:text="${house.id}">9001</td>
+                                <td th:text="${house.address}">Error</td>
+                                <td th:text="${house.bedrooms}">Tasty Goodnees 3</td>
+                                <td th:text="${house.washrooms}">Tasty Goodnees 3</td>
+                                <td th:text="${house.yearBuilt}">Tasty Goodnees 3</td>
+                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/houses/' + ${house.id} + '/show' }">View</a></td>
+                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/houses/' + ${house.id} + '/update'}">Update</a></td>
+                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/houses/' + ${house.id} + '/delete'}">Delete</a></td>
                             </tr>
                         </table>
                     </div>

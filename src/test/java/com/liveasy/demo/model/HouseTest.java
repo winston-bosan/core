@@ -3,11 +3,11 @@ package com.liveasy.demo.model;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class HouseTest {
 
-    House house;
+    private House house;
 
     @Before
     public void setUp(){

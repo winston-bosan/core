@@ -15,7 +15,7 @@ public class UserCommandToUser implements Converter<UserCommand,User> {
     @Override
     @Synchronized
     public User convert(UserCommand source) {
-        if(source == null){return null;}
+        if(null == source){return null;}
 
         User user = new User();
 

@@ -26,7 +26,7 @@ public class IndexController {
 
         Set<User> test = userService.getAllUsers();
         model.addAttribute("users" , test);
-
+        log.debug("Currently at Index Page");
         return "index";
     }
 

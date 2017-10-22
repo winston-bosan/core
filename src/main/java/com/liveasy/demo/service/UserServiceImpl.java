@@ -52,12 +52,17 @@ public class UserServiceImpl implements UserService{
     public UserCommand saveUserCommand(UserCommand command) {
         User tempUser = userCommandToUser.convert(command);
         User savedUser = userRepository.save(tempUser);
-        log.debug("Saved Recipe ID: " + tempUser.getId());
+        log.debug("Saved User ID: " + tempUser.getId());
         return userToUserCommand.convert(savedUser);
     }
 
     @Override
     public UserCommand findCommandById(Long l) {
         return userToUserCommand.convert(findById(l));
+    }
+
+    @Override
+    public void deleteById(Long l){
+        userRepository.deleteById(l);
     }
 }

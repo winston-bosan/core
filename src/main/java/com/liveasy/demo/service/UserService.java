@@ -13,5 +13,6 @@ public interface UserService {
     User findById(Long l);
     UserCommand saveUserCommand(UserCommand command);
     UserCommand findCommandById(Long l);
+    void deleteById(Long l);
 
 }

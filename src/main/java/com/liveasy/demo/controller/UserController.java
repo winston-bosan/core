@@ -2,12 +2,14 @@ package com.liveasy.demo.controller;
 
 import com.liveasy.demo.command.UserCommand;
 import com.liveasy.demo.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@Slf4j
 public class UserController {
 
     private UserService userService;
@@ -47,5 +49,14 @@ public class UserController {
         UserCommand saveCommand = userService.saveUserCommand(command);
         return"redirect:/user/show/" + saveCommand.getId();
     }
+
+    @GetMapping
+    @RequestMapping("user/{id}/delete")
+    public String deleteById(@PathVariable String id){
+        log.debug("Deleting Id: " + id);
+        userService.deleteById(Long.valueOf(id));
+        return "redirect:/";
+    }
+
 
 }

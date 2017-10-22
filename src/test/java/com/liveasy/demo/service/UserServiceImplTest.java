@@ -69,4 +69,19 @@ public class UserServiceImplTest {
     public void findCommandByIdTest() throws Exception {
     }
 
+    @Test
+    public void deleteByIdTest() throws Exception {
+        //given
+        Long idToDelete = Long.valueOf(43L);
+
+        //when
+        //No when, return type is nothing!
+
+        userService.deleteById(idToDelete);
+
+        //then
+        verify(userRepository,times(1)).deleteById(anyLong());
+    }
+
+
 }
