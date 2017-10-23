@@ -22,6 +22,9 @@ public class House {
     private int area;
     private int yearBuilt;
 
+    @Lob
+    private Byte[] image;
+
     public House(){}
 
     public House(String address, int bedrooms, int washrooms, int area, int yearBuilt) {
@@ -119,5 +122,11 @@ public class House {
         this.yearBuilt = yearBuilt;
     }
 
+    public Byte[] getImage() {
+        return image;
+    }
 
+    public void setImage(Byte[] image) {
+        this.image = image;
+    }
 }

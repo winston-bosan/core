@@ -35,4 +35,28 @@ public class UserToUserCommand implements Converter<User,UserCommand> {
         return userCommand;
 
     }
+
+    @Nullable
+    @Synchronized
+    public UserCommand convertNoId(User source) {
+        //todo think of a good a way to do checknull logic
+        //if(source.getId() == null){return null;}
+
+        UserCommand userCommand = new UserCommand();
+
+        userCommand.setActive(source.getActive());
+        userCommand.setEmail(source.getEmail());
+        userCommand.setFirstName(source.getFirstName());
+        userCommand.setLastName(source.getLastName());
+        userCommand.setHouses(source.getHouses());
+        userCommand.setPassword(source.getPassword());
+        userCommand.setRole(source.getRole());
+        userCommand.setDescription(source.getDescription());
+        userCommand.setPurpose(source.getPurpose());
+
+
+        return userCommand;
+
+    }
+
 }

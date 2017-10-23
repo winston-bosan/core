@@ -39,6 +39,7 @@ public class HouseServiceImpl implements HouseService{
     @Override
     public Set<House> getAllHouses() {
         return new HashSet<>( (Collection) houseRepository.findAll());
+
     }
 
     @Override
@@ -105,6 +106,7 @@ public class HouseServiceImpl implements HouseService{
                 houseFound.setArea(command.getArea());
                 houseFound.setPostal(command.getPostal());
                 houseFound.setCity(command.getCity());
+                houseFound.setImage(command.getImage());
 
             } else {
 

@@ -23,6 +23,8 @@ public class HouseCommand {
     private int area;
     private int yearBuilt;
 
+    private Byte[] image;
+
     @Override
     public String toString() {
         return "HouseCommand{" +
