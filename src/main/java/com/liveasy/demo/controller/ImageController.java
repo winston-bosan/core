@@ -63,11 +63,24 @@ public class ImageController {
                                   HttpServletResponse response) throws IOException {
 
         HouseCommand houseCommand = houseService.findCommandByUserIdAndHouseId(Long.valueOf(userId) , Long.valueOf(id));
-        byte[] byteArray = new byte[houseCommand.getImage().length];
+        byte[] byteArray;
+        //todo better solution for default picture and null format
+        if(houseCommand.getImage().length == 0){
 
-        int i = 0;
-        for(Byte wrappedByte : houseCommand.getImage()){
-            byteArray[i++] = wrappedByte;
+            byteArray = new byte[houseCommand.getImage().length];
+            int i = 0;
+            for (Byte wrappedByte : houseCommand.getImage()) {
+                byteArray[i++] = wrappedByte;
+            }
+
+        } else {
+
+            byteArray = new byte[houseCommand.getImage().length];
+
+            int i = 0;
+            for (Byte wrappedByte : houseCommand.getImage()) {
+                byteArray[i++] = wrappedByte;
+            }
         }
 
         response.setContentType("image/jpeg");

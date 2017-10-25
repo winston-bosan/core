@@ -28,7 +28,8 @@ public class HouseServiceImpl implements HouseService{
     private final UserService userService;
 
     @Autowired
-    public HouseServiceImpl(HouseToHouseCommand houseToHouseCommand, HouseCommandToHouse houseCommandToHouse, HouseRepository houseRepository, UserRepository userRepository, UserService userService) {
+    public HouseServiceImpl(HouseToHouseCommand houseToHouseCommand, HouseCommandToHouse houseCommandToHouse,
+                            HouseRepository houseRepository, UserRepository userRepository, UserService userService) {
         this.houseToHouseCommand = houseToHouseCommand;
         this.houseCommandToHouse = houseCommandToHouse;
         this.houseRepository = houseRepository;
@@ -126,8 +127,9 @@ public class HouseServiceImpl implements HouseService{
 
             }
 
-            User savedUser = userRepository.save(user);
 
+            User savedUser = userRepository.save(user);
+            log.debug("Saving HouseCommand ");
             return houseToHouseCommand.convert(
                     savedUser.getHouses().stream()
                     .filter(userHouses -> userHouses.getId().equals(command.getId()))

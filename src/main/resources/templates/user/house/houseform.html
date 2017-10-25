@@ -24,6 +24,7 @@
             <form  th:object="${house}" th:method="post" th:action="@{'/user/' + ${userId} + '/houses'} ">
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{user}"/>
+                <input type="hidden" th:field="*{image}"/>
 
                 <div class="pannel-group">
                     <div class="panel panel-primary">
