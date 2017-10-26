@@ -153,4 +153,23 @@ public class HouseServiceImpl implements HouseService{
 
     }
 
+    @Override
+    public House findByHouseId(Long houseId) {
+
+        Optional<House> houseOptional= houseRepository.findById(houseId);
+
+        if(!houseOptional.isPresent()){
+            //todo Impl Error handling
+            log.debug("House Id not found: " + houseId);
+            return null;
+        }
+
+        log.debug("Hey we got a house like this: " + houseOptional.get().toString());
+        return houseOptional.get();
+    }
+
+    @Override
+    public House saveHouse(House house) {
+        return houseRepository.save(house);
+    }
 }

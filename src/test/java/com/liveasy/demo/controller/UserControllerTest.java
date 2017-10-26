@@ -1,5 +1,6 @@
 package com.liveasy.demo.controller;
 
+import com.liveasy.demo.controllerAdvice.ControllerExceptionHandler;
 import com.liveasy.demo.exception.NotFoundException;
 import com.liveasy.demo.service.UserService;
 import org.junit.Before;
@@ -17,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 public class UserControllerTest {
 
+
     @Mock
     UserService userService;
     UserController userController;
@@ -26,7 +28,10 @@ public class UserControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         userController = new UserController(userService);
-        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(userController)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
+
     }
 
 
@@ -57,7 +62,17 @@ public class UserControllerTest {
         //verify
         mockMvc.perform(get("/user/1/show"))
                 .andExpect(status().isNotFound())
-                .andExpect(view().name("404error"));
+                .andExpect(view().name("error/404error"));
+    }
+
+    @Test
+    public void handleBadRequest() throws Exception {
+        //when(userService.findById(anyString()).thenThrow(NotFoundException.class);
+
+        //verify
+        mockMvc.perform(get("/user/gfdar/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("error/400error"));
     }
 
 }

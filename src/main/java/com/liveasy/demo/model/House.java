@@ -1,7 +1,12 @@
 package com.liveasy.demo.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 public class House {
 
@@ -16,16 +21,21 @@ public class House {
     private String postal;
     private String city;
 
+    private double lat;
+    private double lng;
 
     private int bedrooms;
+
     private int washrooms;
+
     private int area;
     private int yearBuilt;
 
     @Lob
     private Byte[] image;
 
-    public House(){}
+    public House() {
+    }
 
     public House(String address, int bedrooms, int washrooms, int area, int yearBuilt) {
         this.address = address;
@@ -33,6 +43,10 @@ public class House {
         this.washrooms = washrooms;
         this.area = area;
         this.yearBuilt = yearBuilt;
+    }
+
+    public String getFullAddress(){
+        return this.address + ", " + this.city;
     }
 
     @Override
@@ -43,90 +57,12 @@ public class House {
                 ", address='" + address + '\'' +
                 ", postal='" + postal + '\'' +
                 ", city='" + city + '\'' +
+                ", lat=" + lat +
+                ", lng=" + lng +
                 ", bedrooms=" + bedrooms +
                 ", washrooms=" + washrooms +
                 ", area=" + area +
                 ", yearBuilt=" + yearBuilt +
                 '}';
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPostal() {
-        return postal;
-    }
-
-    public void setPostal(String postal) {
-        this.postal = postal;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public int getBedrooms() {
-        return bedrooms;
-    }
-
-    public void setBedrooms(int bedrooms) {
-        this.bedrooms = bedrooms;
-    }
-
-    public int getWashrooms() {
-        return washrooms;
-    }
-
-    public void setWashrooms(int washrooms) {
-        this.washrooms = washrooms;
-    }
-
-    public int getArea() {
-        return area;
-    }
-
-    public void setArea(int area) {
-        this.area = area;
-    }
-
-    public int getYearBuilt() {
-        return yearBuilt;
-    }
-
-    public void setYearBuilt(int yearBuilt) {
-        this.yearBuilt = yearBuilt;
-    }
-
-    public Byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(Byte[] image) {
-        this.image = image;
     }
 }

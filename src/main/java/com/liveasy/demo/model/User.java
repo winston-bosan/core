@@ -47,13 +47,9 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
+        if(this.id == null || user.getId()==null) return false;
 
-        return id.equals(user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
+        return id != null ? id.equals(user.id) : user.id == null;
     }
 
     public Long getId() {

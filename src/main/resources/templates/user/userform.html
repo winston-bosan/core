@@ -26,7 +26,13 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
+
+
             <form  th:object="${user}" th:action="@{'/user/'}" method="post">
+
+                <!-- Error Statement -->
+                <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger"><p>Please Correct Error Below</p></div>
+
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{houses}"/>
                 <div class="pannel-group">
@@ -56,16 +62,41 @@
                                     </select>
                                 </div>
                             </div>
+
                             <div class="row">
-                                <div class="col-md-3 form-group">
+
+                                <div class="col-md-3 form-group" th:class="${#fields.hasErrors('firstName')} ?
+                                'col-md-3 form-group has-error' : 'col-md-3 form-group'">
                                     <label>First Name:</label>
                                     <input type="text" class="form-control" th:field="*{firstName}"/>
+
+                                    <!--Help Block for: firstName
+                                        > It shows the div help block only when fields has errors which belongs to firstName
+                                        > then, in the list, it shows every single errors included in the array of errors that belongs to firstName-->
+                                    <span class="help-block" th:if="${#fields.hasErrors('firstName')}" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></li>
+                                        </ul>
+                                    </span>
+
                                 </div>
-                                <div class="col-md-3 form-group">
+
+                                <div class="col-md-3 form-group" th:class="${#fields.hasErrors('lastName')} ?
+                                'col-md-3 form-group has-error' : 'col-md-3 form-group'">
                                     <label>Last Name:</label>
                                     <input type="text" class="form-control" th:field="*{lastName}"/>
+
+                                    <!--Help Block for: lastName-->
+                                    <span class="help-block" th:if="${#fields.hasErrors('lastName')}" >
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}"></li>
+                                        </ul>
+                                    </span>
+
                                 </div>
+
                             </div>
+
                             <div class="row">
                                 <div class="col-md-5 form-group">
                                     <label>Email :</label>
