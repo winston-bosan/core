@@ -20,14 +20,15 @@ public class House {
     private String address;
     private String postal;
     private String city;
+    private String locality;
 
     private double lat;
     private double lng;
 
+
+
     private int bedrooms;
-
     private int washrooms;
-
     private int area;
     private int yearBuilt;
 

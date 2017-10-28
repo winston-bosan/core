@@ -31,33 +31,13 @@ public class HouseCommandToHouse implements Converter<HouseCommand,House>{
         house.setImage(source.getImage());
         house.setLat(source.getLat());
         house.setLng(source.getLng());
+        house.setLocality(source.getLocality());
 
 
         return house;
 
     }
 
-    @Synchronized
-    @Nullable
-    public House convertNoId(HouseCommand source) {
-        //todo think of a good a way to do checknull logic
-        //if(source.getId() == null){return null;}
-
-        final House house = new House();
-
-        house.setUser(source.getUser());
-        house.setAddress(source.getAddress());
-        house.setArea(source.getArea());
-        house.setBedrooms(source.getBedrooms());
-        house.setWashrooms(source.getWashrooms());
-        house.setYearBuilt(source.getYearBuilt());
-        house.setCity(source.getCity());
-        house.setPostal(source.getPostal());
-        house.setImage(source.getImage());
-
-        return house;
-
-    }
 
 
 }

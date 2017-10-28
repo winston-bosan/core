@@ -36,7 +36,6 @@ public class HouseServiceAspect {
         HouseCommand houseCommand = (HouseCommand) joinPoint.proceed();
         House house = houseCommandToHouse.convert(houseCommand);
         mapService.updateHouseById(house.getId());
-        mapService.test();
         mapService.write();
 
         log.debug("****LoggingAspect.logAroundSaveCommand() : " + joinPoint.getSignature().getName() + ": After Method Execution");

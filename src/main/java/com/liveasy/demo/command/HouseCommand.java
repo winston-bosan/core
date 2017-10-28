@@ -21,6 +21,8 @@ public class HouseCommand {
     private String address;
     private String postal;
     private String city;
+    private String locality;
+
 
     private double lat;
     private double lng;

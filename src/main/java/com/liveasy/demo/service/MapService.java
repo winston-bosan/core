@@ -57,9 +57,6 @@ public class MapService {
         return true;
     }
 
-    public void test(){
-        log.debug("I AM ALIVE");
-    }
 
     public void updateHouseById(Long l){
         GeoApiContext context = new GeoApiContext.Builder()
@@ -84,63 +81,8 @@ public class MapService {
 
     }
 
-    //Deprecated Version 0.0
-    /*
-    public double[] updateHouseById(Long l){
-        House house = houseService.findByHouseId(l);
-
-        String input = house.getAddress();
-        String url = "https://maps.googleapis.com/maps/api/geocode/json";
-        String charset = "UTF-8";
-        String address = input;
-        //Assuming it is in Toronto
-        //todo change this to a more generalizable version later
-        address = address + ", Toronto, ON";
-        address = address.replace(" ","+");
-        //todo wire this from application properties
-        String key = "AIzaSyBlcxyPzDn8D8lObVhl0uPd9DK0m1RoUlM";
-
-        //Initialize Query and URL
-        String query = "address=" + address + "&" + "key=" + key;
-        System.out.println(query);
-
-        //URLConnection connection = new URL(url + "?" + query).openConnection();
-
-        try {
-            URL answer = new URL(url + "?" + query);
-            try {
-                URLConnection connection = answer.openConnection();
 
 
-                //Set Charset
-                connection.setRequestProperty("Accept-Charset", charset);
-                InputStream response = connection.getInputStream();
-
-                System.out.println(response);
-
-                try (Scanner scanner = new Scanner(response)) {
-                    String responseBody = scanner.useDelimiter("\\A").next();
-                    System.out.println(responseBody);
-                }
-
-                return null;
-
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        return null;
-
-    }
-
-    public void updateLocationById(Long id){
-        House house = houseService.findByHouseId(id);
-
-    }
-    */
 
     public void write() {
 
@@ -174,6 +116,7 @@ public class MapService {
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
 
+            //todo have a more robust path name scheme here
             //StreamResult result = new StreamResult(new File("/resources/location.xml"));
             StreamResult result = new StreamResult(new File(
                     "//Users//simon//IdeaProjects//liveasyDemo//src//main//resources//location.xml"));
