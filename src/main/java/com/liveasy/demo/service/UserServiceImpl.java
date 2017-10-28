@@ -3,6 +3,7 @@ package com.liveasy.demo.service;
 import com.liveasy.demo.command.UserCommand;
 import com.liveasy.demo.converter.UserCommandToUser;
 import com.liveasy.demo.converter.UserToUserCommand;
+import com.liveasy.demo.exception.NotFoundException;
 import com.liveasy.demo.model.User;
 import com.liveasy.demo.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Slf4j
@@ -38,13 +40,14 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User findById(Long l) {
-        User weWant = userRepository.findById(l).get();
 
-        if(weWant==null){
-            throw new RuntimeException("User Not Found!");
+        Optional<User> weWant = userRepository.findById(l);
+
+        if(!weWant.isPresent()){
+            throw new NotFoundException("User not found! For User ID of : " + l.toString());
         }
 
-        return weWant;
+        return weWant.get();
     }
 
     @Transactional

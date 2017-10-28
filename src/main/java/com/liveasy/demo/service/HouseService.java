@@ -11,5 +11,7 @@ public interface HouseService {
     HouseCommand findCommandByUserIdAndHouseId(Long userId, Long houseId);
     HouseCommand saveHouseCommand(HouseCommand command);
     void deleteById(Long l);
+    House findByHouseId(Long houseId);
+    House saveHouse(House house);
 
 }

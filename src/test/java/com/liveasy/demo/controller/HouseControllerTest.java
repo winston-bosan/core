@@ -1,6 +1,7 @@
 package com.liveasy.demo.controller;
 
 import com.liveasy.demo.command.UserCommand;
+import com.liveasy.demo.controllerAdvice.ControllerExceptionHandler;
 import com.liveasy.demo.converter.HouseToHouseCommand;
 import com.liveasy.demo.service.HouseService;
 import com.liveasy.demo.service.UserService;
@@ -31,7 +32,9 @@ public class HouseControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         houseController = new HouseController(userService, houseService, houseToHouseCommand);
-        mockMvc = MockMvcBuilders.standaloneSetup(houseController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(houseController)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
     }
 
     @Test

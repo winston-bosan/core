@@ -44,7 +44,7 @@
                                 <td th:text="${user.id}">334</td>
                                 <td th:text="${user.firstName}">Tasty Goodnees 3</td>
                                 <td th:text="${user.lastName}">Tasty Goodnees 3</td>
-                                <td><a href="#" th:href="@{'/user/show/' + ${user.id}}">View</a></td>
+                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/show'}">View</a></td>
                                 <td><a href="#" th:href="@{'/user/' + ${user.id} + '/update'}">Update</a></td>
                                 <td><a href="#" th:href="@{'/user/' + ${user.id} + '/delete'}">Delete</a></td>
                             </tr>

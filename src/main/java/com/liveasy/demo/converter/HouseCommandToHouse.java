@@ -28,10 +28,16 @@ public class HouseCommandToHouse implements Converter<HouseCommand,House>{
         house.setYearBuilt(source.getYearBuilt());
         house.setCity(source.getCity());
         house.setPostal(source.getPostal());
+        house.setImage(source.getImage());
+        house.setLat(source.getLat());
+        house.setLng(source.getLng());
+        house.setLocality(source.getLocality());
 
 
         return house;
 
     }
+
+
 
 }

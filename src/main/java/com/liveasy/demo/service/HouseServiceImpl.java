@@ -28,7 +28,8 @@ public class HouseServiceImpl implements HouseService{
     private final UserService userService;
 
     @Autowired
-    public HouseServiceImpl(HouseToHouseCommand houseToHouseCommand, HouseCommandToHouse houseCommandToHouse, HouseRepository houseRepository, UserRepository userRepository, UserService userService) {
+    public HouseServiceImpl(HouseToHouseCommand houseToHouseCommand, HouseCommandToHouse houseCommandToHouse,
+                            HouseRepository houseRepository, UserRepository userRepository, UserService userService) {
         this.houseToHouseCommand = houseToHouseCommand;
         this.houseCommandToHouse = houseCommandToHouse;
         this.houseRepository = houseRepository;
@@ -39,6 +40,7 @@ public class HouseServiceImpl implements HouseService{
     @Override
     public Set<House> getAllHouses() {
         return new HashSet<>( (Collection) houseRepository.findAll());
+
     }
 
     @Override
@@ -105,6 +107,7 @@ public class HouseServiceImpl implements HouseService{
                 houseFound.setArea(command.getArea());
                 houseFound.setPostal(command.getPostal());
                 houseFound.setCity(command.getCity());
+                houseFound.setImage(command.getImage());
 
             } else {
 
@@ -124,8 +127,9 @@ public class HouseServiceImpl implements HouseService{
 
             }
 
-            User savedUser = userRepository.save(user);
 
+            User savedUser = userRepository.save(user);
+            log.debug("Saving HouseCommand ");
             return houseToHouseCommand.convert(
                     savedUser.getHouses().stream()
                     .filter(userHouses -> userHouses.getId().equals(command.getId()))
@@ -149,4 +153,23 @@ public class HouseServiceImpl implements HouseService{
 
     }
 
+    @Override
+    public House findByHouseId(Long houseId) {
+
+        Optional<House> houseOptional= houseRepository.findById(houseId);
+
+        if(!houseOptional.isPresent()){
+            //todo Impl Error handling
+            log.debug("House Id not found: " + houseId);
+            return null;
+        }
+
+        log.debug("Hey we got a house like this: " + houseOptional.get().toString());
+        return houseOptional.get();
+    }
+
+    @Override
+    public House saveHouse(House house) {
+        return houseRepository.save(house);
+    }
 }

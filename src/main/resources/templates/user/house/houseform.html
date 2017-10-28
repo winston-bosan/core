@@ -24,6 +24,12 @@
             <form  th:object="${house}" th:method="post" th:action="@{'/user/' + ${userId} + '/houses'} ">
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{user}"/>
+                <input type="hidden" th:field="*{image}"/>
+                <input type="hidden" th:field="*{lat}"/>
+                <input type="hidden" th:field="*{lng}"/>
+                <input type="hidden" th:field="*{user}"/>
+
+
 
                 <div class="pannel-group">
                     <div class="panel panel-primary">
@@ -40,12 +46,17 @@
                                 </div>
 
                                 <div class="col-md-3 form-group">
+                                    <label>City:</label>
+                                    <input type="text" class="form-control" th:field="*{city}"/>
+                                </div>
+
+                                <div class="col-md-3 form-group">
                                     <label>Bedroom:</label>
                                     <input type="number" class="form-control" th:field="*{bedrooms}"/>
                                 </div>
 
                                 <div class="col-md-3 form-group">
-                                    <label>Bedroom:</label>
+                                    <label>Washroom:</label>
                                     <input type="number" class="form-control" th:field="*{washrooms}"/>
                                 </div>
 

@@ -90,6 +90,7 @@ public class HouseController {
         //log.debug("DOES THIS WORK??!?!?!?!?!??!");
 
         HouseCommand savedCommand = houseService.saveHouseCommand(house);
+        log.debug(savedCommand.toString());
 
         log.debug("Saved House ID: " + savedCommand.getId());
         log.debug("Saved User ID: " + savedCommand.getUser().getId());
