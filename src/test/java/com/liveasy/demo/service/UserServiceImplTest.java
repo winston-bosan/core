@@ -1,7 +1,7 @@
 package com.liveasy.demo.service;
 
-import com.liveasy.demo.converter.UserCommandToUser;
-import com.liveasy.demo.converter.UserToUserCommand;
+import com.liveasy.demo.converter.UserConverter.UserCommandToUser;
+import com.liveasy.demo.converter.UserConverter.UserToUserCommand;
 import com.liveasy.demo.model.User;
 import com.liveasy.demo.repository.HouseRepository;
 import com.liveasy.demo.repository.UserRepository;

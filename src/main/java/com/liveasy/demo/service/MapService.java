@@ -71,10 +71,10 @@ public class MapService {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 
-            house.setCity((results[0].addressComponents[3].longName));
-            house.setPostal((results[0].addressComponents[7].longName));
-            house.setLat(results[0].geometry.location.lat);
-            house.setLng(results[0].geometry.location.lng);
+            house.getLocation().setCity((results[0].addressComponents[3].longName));
+            house.getLocation().setPostalCode((results[0].addressComponents[7].longName));
+            house.getLocation().setLat(results[0].geometry.location.lat);
+            house.getLocation().setLng(results[0].geometry.location.lng);
 
             houseService.saveHouse(house);
         } catch (Exception e){}
@@ -103,9 +103,9 @@ public class MapService {
 
                 marker.setAttribute("id", house.getId().toString());
                 marker.setAttribute("name", house.getUser().getFirstName() + " " + house.getUser().getLastName());
-                marker.setAttribute("address", house.getAddress() + ", " + house.getCity());
-                marker.setAttribute("lat", String.valueOf(house.getLat()));
-                marker.setAttribute("lng", String.valueOf(house.getLng()));
+                marker.setAttribute("address", house.getLocation().getAddress() + ", " + house.getLocation().getCity());
+                marker.setAttribute("lat", String.valueOf(house.getLocation().getLat()));
+                marker.setAttribute("lng", String.valueOf(house.getLocation().getLng()));
                 marker.setAttribute("type", "restaurant");
             }
 
@@ -119,7 +119,7 @@ public class MapService {
             //todo have a more robust path name scheme here
             //StreamResult result = new StreamResult(new File("/resources/location.xml"));
             StreamResult result = new StreamResult(new File(
-                    "//Users//simon//IdeaProjects//liveasyDemo//src//main//resources//location.xml"));
+                    "//Users//simon//IdeaProjects//liveasyDemo//src//main//resources//location//location.xml"));
 
 
             // Output to console for testing

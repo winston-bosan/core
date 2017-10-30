@@ -1,101 +1,385 @@
-<!DOCTYPE html >
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <title>Google Maps with Spring MVC</title>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <title>Google Maps with Spring MVC</title>
+  <link rel="stylesheet" type="text/css" href="css/mapstyle.css">
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+    #map {
+      height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1,h2,h3,h4,h5{
+        margin:0;
         padding: 0;
-      }
-    </style>
-  </head>
+    }
 
-  <body>
-    <div id="map"></div>
+    #wrapper { position: relative;         height: 100%;
+      margin: 0;
+      padding: 0;}
+    #over_map { position: absolute; top: 0px; left: 0px; z-index: 99;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      pointer-events: none;
 
-    <script>
-      var customLabel = {
+
+    }
+
+    #text_box_constraint{
+      width: 500px;
+      height: 100%;
+      overflow: scroll;
+      padding: 25px;
+      box-sizing: border-box;
+        pointer-events: auto;
+
+
+    }
+    .test_box{
+      width: 350px;
+      height: 210px;
+        padding: 0;
+      margin-bottom: 25px;
+      background-color: #fff;
+      box-shadow: 0 0 2px 2px rgba(0, 0, 0, .25);
+      float: left;
+        pointer-events: auto;
+    }
+
+
+
+  </style>
+</head>
+
+<body>
+<div id="wrapper">
+  <div id="map">
+
+  </div>
+  <div id="over_map">
+    <div id="text_box_constraint">
+        <!--/*@thymesVar id="houses" type="java.util.Set<com.liveasy.demo.command.HouseCommand>"*/-->
+      <div class = "test_box" th:each="house : ${houses}">
+          <h2 th:text="${house.location.getAddress()}"></h2>
+          <h3>Bedrooms: </h3>
+          <h3 th:text="${house.layout.getBedrooms()}"></h3>
+      </div>
+        <div class="test_box"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+    var customLabel = {
         restaurant: {
-          label: 'R'
+            label: 'R'
         },
         bar: {
-          label: 'B'
+            label: 'B'
+        },
+        house:{
+            label:'H'
         }
-      };
+    };
 
-        function initMap() {
+    function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(43.6791866, -79.4030603),
-          zoom: 12
+            center: new google.maps.LatLng(43.6791866, -79.4030603),
+            zoom: 12,
+            disableDefaultUI: true,
+            mapTypeControlOptions: {
+                mapTypeIds: ['roadmap']
+            },
+
+            styles:[
+                {
+                    "featureType":"all",
+                    "elementType":"labels",
+                    "stylers":[
+                        {
+                            "visibility":"off"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"administrative",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "visibility":"off"
+                        },
+                        {
+                            "color":"#efebe2"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"administrative.locality",
+                    "elementType":"labels.text",
+                    "stylers":[
+                        {
+                            "visibility":"on"
+                        },
+                        {
+                            "color":"#2f2f2f"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"administrative.locality",
+                    "elementType":"labels.text.stroke",
+                    "stylers":[
+                        {
+                            "visibility":"off"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"administrative.locality",
+                    "elementType":"labels.icon",
+                    "stylers":[
+                        {
+                            "visibility":"off"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"landscape",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#efebe2"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"poi",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#efebe2"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"poi.attraction",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#efebe2"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"poi.business",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#efebe2"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"poi.government",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#dfdcd5"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"poi.medical",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#dfdcd5"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"poi.park",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#bad294"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"poi.place_of_worship",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#efebe2"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"poi.school",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#efebe2"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"poi.sports_complex",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#efebe2"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"road.highway",
+                    "elementType":"geometry.fill",
+                    "stylers":[
+                        {
+                            "color":"#ffffff"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"road.highway",
+                    "elementType":"geometry.stroke",
+                    "stylers":[
+                        {
+                            "visibility":"off"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"road.arterial",
+                    "elementType":"geometry.fill",
+                    "stylers":[
+                        {
+                            "color":"#ffffff"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"road.arterial",
+                    "elementType":"geometry.stroke",
+                    "stylers":[
+                        {
+                            "visibility":"off"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"road.local",
+                    "elementType":"geometry.fill",
+                    "stylers":[
+                        {
+                            "color":"#fbfbfb"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"road.local",
+                    "elementType":"geometry.stroke",
+                    "stylers":[
+                        {
+                            "visibility":"off"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"transit",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "visibility":"off"
+                        }
+                    ]
+                },
+                {
+                    "featureType":"water",
+                    "elementType":"all",
+                    "stylers":[
+                        {
+                            "color":"#4fc3d8"
+                        }
+                    ]
+                }
+            ]
         });
         var infoWindow = new google.maps.InfoWindow;
 
-          // Change this depending on the name of your PHP or XML file
-          downloadUrl('http://localhost:8080/map/xml', function(data) {
+        // Change this depending on the name of your PHP or XML file
+        downloadUrl('http://localhost:8080/map/xml', function(data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName('marker');
             Array.prototype.forEach.call(markers, function(markerElem) {
-              var id = markerElem.getAttribute('id');
-              var name = markerElem.getAttribute('name');
-              var address = markerElem.getAttribute('address');
-              var type = markerElem.getAttribute('type');
-              var point = new google.maps.LatLng(
-                  parseFloat(markerElem.getAttribute('lat')),
-                  parseFloat(markerElem.getAttribute('lng')));
+                var id = markerElem.getAttribute('id');
+                var name = markerElem.getAttribute('name');
+                var address = markerElem.getAttribute('address');
+                var type = markerElem.getAttribute('type');
+                var point = new google.maps.LatLng(
+                    parseFloat(markerElem.getAttribute('lat')),
+                    parseFloat(markerElem.getAttribute('lng')));
 
-              var infowincontent = document.createElement('div');
-              var strong = document.createElement('strong');
-              strong.textContent = name
-              infowincontent.appendChild(strong);
-              infowincontent.appendChild(document.createElement('br'));
+                var infowincontent = document.createElement('div');
+                var strong = document.createElement('strong');
+                strong.textContent = name;
+                infowincontent.appendChild(strong);
+                infowincontent.appendChild(document.createElement('br'));
 
-              var text = document.createElement('text');
-              text.textContent = address
-              infowincontent.appendChild(text);
-              var icon = customLabel[type] || {};
-              var marker = new google.maps.Marker({
-                map: map,
-                position: point,
-                label: icon.label
-              });
-              marker.addListener('click', function() {
-                infoWindow.setContent(infowincontent);
-                infoWindow.open(map, marker);
-              });
+                var text = document.createElement('text');
+                text.textContent = address;
+                infowincontent.appendChild(text);
+                var icon = customLabel[type] || {};
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: point,
+                    label: icon.label
+                });
+                marker.addListener('click', function() {
+                    infoWindow.setContent(infowincontent);
+                    infoWindow.open(map, marker);
+                });
             });
-          });
-        }
+        });
+    }
 
 
 
-      function downloadUrl(url, callback) {
+    function downloadUrl(url, callback) {
         var request = window.ActiveXObject ?
             new ActiveXObject('Microsoft.XMLHTTP') :
             new XMLHttpRequest;
 
         request.onreadystatechange = function() {
-          if (request.readyState == 4) {
-            request.onreadystatechange = doNothing;
-            callback(request, request.status);
-          }
+            if (request.readyState == 4) {
+                request.onreadystatechange = doNothing;
+                callback(request, request.status);
+            }
         };
 
         request.open('GET', url, true);
         request.send(null);
-      }
+    }
 
-      function doNothing() {}
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlcxyPzDn8D8lObVhl0uPd9DK0m1RoUlM&callback=initMap">
-    </script>
-  </body>
+    function doNothing() {}
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlcxyPzDn8D8lObVhl0uPd9DK0m1RoUlM&callback=initMap">
+</script>
+</body>
 </html>

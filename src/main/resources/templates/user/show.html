@@ -48,7 +48,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <h1 class="panel-title" th:text="${user.firstName} + ' ' + ${user.lastName} + '\'s House'
-                        + ' on ' + ${house.address} ">Recipe Description Here!</h1>
+                        + ' on ' + ${house.getLocation().getAddress()} ">Recipe Description Here!</h1>
 
 
                     </div>
@@ -56,12 +56,30 @@
                     <div class="panel-body">
 
                         <div class="row">
+
+                            <div class="col-md-1">
+                                <h5>Street Number:</h5>
+                            </div>
                             <div class="col-md-3">
-                                <h5>Address:</h5>
+                                <p th:text="${house.location.streetNumber}">Somewhere Street Toronto</p>
                             </div>
-                            <div class="col-md-9">
-                                <p th:text="${house.address}">Somewhere Street Toronto</p>
+
+                            <div class="col-md-1">
+                                <h5>Street Name:</h5>
                             </div>
+                            <div class="col-md-3">
+                                <p th:text="${house.location.street}">Somewhere Street Toronto</p>
+                            </div>
+
+                            <div class="col-md-1">
+                                <h5>City:</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <p th:text="${house.location.city}">Somewhere Street Toronto</p>
+                            </div>
+
+
+
                         </div>
 
                         <div class="row">
@@ -69,13 +87,13 @@
                                 <h5>Bedrooms: </h5>
                             </div>
                             <div class="col-md-3">
-                                <p th:text="${house.bedrooms}">>9001</p>
+                                <p th:text="${house.layout.bedrooms}">>9001</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>Washrooms: </h5>
                             </div>
                             <div class="col-md-3">
-                                <p th:text="${house.washrooms}">-1</p>
+                                <p th:text="${house.layout.washrooms}">-1</p>
                             </div>
                         </div>
                         <div class="row">
@@ -83,13 +101,13 @@
                                 <h5>Area: </h5>
                             </div>
                             <div class="col-md-3">
-                                <p th:text="${house.area} + ' Feet'">>3000 Feet</p>
+                                <p th:text="${house.layout.area} + ' Feet'">>3000 Feet</p>
                             </div>
                             <div class="col-md-3">
                                 <h5>Year Built: </h5>
                             </div>
                             <div class="col-md-3">
-                                <p th:text="${house.yearBuilt}">>1943 AD</p>
+                                <p th:text="${house.layout.yearBuilt}">>1943 AD</p>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-package com.liveasy.demo.converter;
+package com.liveasy.demo.converter.HouseConverter;
 
 
 import com.liveasy.demo.command.HouseCommand;
@@ -21,18 +21,10 @@ public class HouseCommandToHouse implements Converter<HouseCommand,House>{
         final House house = new House();
         house.setId(source.getId());
         house.setUser(source.getUser());
-        house.setAddress(source.getAddress());
-        house.setArea(source.getArea());
-        house.setBedrooms(source.getBedrooms());
-        house.setWashrooms(source.getWashrooms());
-        house.setYearBuilt(source.getYearBuilt());
-        house.setCity(source.getCity());
-        house.setPostal(source.getPostal());
+        house.setLayout(source.getLayout());
+        house.setLocation(source.getLocation());
+        house.setComment(source.getComment());
         house.setImage(source.getImage());
-        house.setLat(source.getLat());
-        house.setLng(source.getLng());
-        house.setLocality(source.getLocality());
-
 
         return house;
 

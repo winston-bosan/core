@@ -25,8 +25,8 @@
                 <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{user}"/>
                 <input type="hidden" th:field="*{image}"/>
-                <input type="hidden" th:field="*{lat}"/>
-                <input type="hidden" th:field="*{lng}"/>
+                <input type="hidden" th:field="*{location.lat}"/>
+                <input type="hidden" th:field="*{location.lng}"/>
                 <input type="hidden" th:field="*{user}"/>
 
 
@@ -40,34 +40,39 @@
 
 
                             <div class="row">
-                                <div class="col-md-3 form-group">
-                                    <label>Address:</label>
-                                    <input type="text" class="form-control" th:field="*{address}"/>
+                                <div class="col-md-2 form-group">
+                                    <label>Number:</label>
+                                    <input type="text" class="form-control" th:field="*{location.streetNumber}"/>
                                 </div>
 
-                                <div class="col-md-3 form-group">
+                                <div class="col-md-2 form-group">
+                                    <label>Street:</label>
+                                    <input type="text" class="form-control" th:field="*{location.street}"/>
+                                </div>
+
+                                <div class="col-md-2 form-group">
                                     <label>City:</label>
-                                    <input type="text" class="form-control" th:field="*{city}"/>
+                                    <input type="text" class="form-control" th:field="*{location.city}"/>
                                 </div>
 
                                 <div class="col-md-3 form-group">
                                     <label>Bedroom:</label>
-                                    <input type="number" class="form-control" th:field="*{bedrooms}"/>
+                                    <input type="number" class="form-control" th:field="*{layout.bedrooms}"/>
                                 </div>
 
                                 <div class="col-md-3 form-group">
                                     <label>Washroom:</label>
-                                    <input type="number" class="form-control" th:field="*{washrooms}"/>
+                                    <input type="number" class="form-control" th:field="*{layout.washrooms}"/>
                                 </div>
 
                                 <div class="col-md-3 form-group">
                                     <label>Area:</label>
-                                    <input type="number" class="form-control" th:field="*{area}"/>
+                                    <input type="number" class="form-control" th:field="*{layout.area}"/>
                                 </div>
 
                                 <div class="col-md-3 form-group">
                                     <label>Year Built:</label>
-                                    <input type="number" class="form-control" th:field="*{yearBuilt}"/>
+                                    <input type="number" class="form-control" th:field="*{layout.yearBuilt}"/>
                                 </div>
 
                                 <!--

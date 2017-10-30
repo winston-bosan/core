@@ -1,4 +1,4 @@
-package com.liveasy.demo.converter;
+package com.liveasy.demo.converter.UserConverter;
 
 import com.liveasy.demo.command.UserCommand;
 import com.liveasy.demo.model.User;

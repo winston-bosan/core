@@ -85,10 +85,10 @@
                             </thead>
                             <tr th:each="house : ${houses}">
                                 <td th:text="${house.id}">9001</td>
-                                <td th:text="${house.address}">Error</td>
-                                <td th:text="${house.bedrooms}">Tasty Goodnees 3</td>
-                                <td th:text="${house.washrooms}">Tasty Goodnees 3</td>
-                                <td th:text="${house.yearBuilt}">Tasty Goodnees 3</td>
+                                <td th:text="${house.getLocation().getAddress()}">Error</td>
+                                <td th:text="${house.getLayout().getBedrooms()}">Tasty Goodnees 3</td>
+                                <td th:text="${house.getLayout().getWashrooms()}">Tasty Goodnees 3</td>
+                                <td th:text="${house.getLayout().getYearBuilt()}">Tasty Goodnees 3</td>
                                 <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/show' }">View</a></td>
                                 <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/update'}">Update</a></td>
                                 <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/delete'}">Delete</a></td>

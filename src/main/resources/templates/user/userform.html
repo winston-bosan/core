@@ -126,9 +126,9 @@
                                 <div class="col-md-12">
                                     <ul>
                                         <li th:each="house : ${user.houses}"
-                                            th:text="${( 'At ' + house.getAddress() +
-                                        ', Bedroom Count of ' + house.getBedrooms() +
-                                        ' - ' + house.getWashrooms())}">1 Teaspoon of Sugar
+                                            th:text="${( 'At ' + house.getLocation().getAddress() +
+                                        ', Bedroom Count of ' + house.getLayout().getBedrooms() +
+                                        ' - ' + house.getLayout().getWashrooms())}">1 Teaspoon of Sugar
                                         </li>
                                     </ul>
                                 </div>

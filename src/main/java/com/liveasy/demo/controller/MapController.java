@@ -1,5 +1,7 @@
 package com.liveasy.demo.controller;
 
+import com.liveasy.demo.service.HouseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +13,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class MapController {
 
+    private HouseService houseService;
+
+    @Autowired
+    public MapController(HouseService houseService) {
+        this.houseService = houseService;
+    }
+
     @GetMapping("/map")
     public String seeMap(Model model){
+        model.addAttribute("houses",houseService.getAllHouses());
         return "hellotest";
     }
 
@@ -21,7 +31,7 @@ public class MapController {
     @RequestMapping(value = "/map/xml", method = RequestMethod.GET, produces = "application/xml")
     @ResponseBody
     public FileSystemResource helloRest() {
-        return new FileSystemResource("//Users//simon//IdeaProjects//liveasyDemo//src//main//resources//location.xml");
+        return new FileSystemResource("//Users//simon//IdeaProjects//liveasyDemo//src//main//resources//location//location.xml");
     }
 
 

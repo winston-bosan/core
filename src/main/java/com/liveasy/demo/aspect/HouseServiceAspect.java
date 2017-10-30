@@ -1,7 +1,7 @@
 package com.liveasy.demo.aspect;
 
 import com.liveasy.demo.command.HouseCommand;
-import com.liveasy.demo.converter.HouseCommandToHouse;
+import com.liveasy.demo.converter.HouseConverter.HouseCommandToHouse;
 import com.liveasy.demo.model.House;
 import com.liveasy.demo.service.MapService;
 import lombok.extern.slf4j.Slf4j;

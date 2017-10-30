@@ -48,10 +48,10 @@
                             </thead>
                             <tr th:each="house : ${user.houses}">
                                 <td th:text="${house.id}">9001</td>
-                                <td th:text="${house.address}">Error</td>
-                                <td th:text="${house.bedrooms}">Tasty Goodnees 3</td>
-                                <td th:text="${house.washrooms}">Tasty Goodnees 3</td>
-                                <td th:text="${house.yearBuilt}">Tasty Goodnees 3</td>
+                                <td th:text="${house.location.streetNumber} + ' ' + ${house.location.street} + ' ' + ${house.location.city}">Error</td>
+                                <td th:text="${house.layout.bedrooms}">Tasty Goodnees 3</td>
+                                <td th:text="${house.layout.washrooms}">Tasty Goodnees 3</td>
+                                <td th:text="${house.layout.yearBuilt}">Tasty Goodnees 3</td>
                                 <td><a href="#" th:href="@{'/user/' + ${user.id} + '/houses/' + ${house.id} + '/show' }">View</a></td>
                                 <td><a href="#" th:href="@{'/user/' + ${user.id} + '/houses/' + ${house.id} + '/update'}">Update</a></td>
                                 <td><a href="#" th:href="@{'/user/' + ${user.id} + '/houses/' + ${house.id} + '/delete'}">Delete</a></td>
@@ -62,8 +62,8 @@
             </div>
         </div>
 
-        <input type="button" class="btn btn-info text-center" value="Create new House!"
-               th:href="@{/user/ + ${user.id} + /houses/ + ${house.id} + /show }"
+        <input type="button" class="btn btn-info text-center" value="Create new  ffds  ffff House!"
+               th:action="@{'/user/' + ${user.id} + '/houses/new'}"
                 style="margin: 0px 0px 40px 0px">
 
     </div>

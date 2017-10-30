@@ -1,13 +1,16 @@
 package com.liveasy.demo.model;
 
+import com.liveasy.demo.model.HouseSubmodels.Comment;
+import com.liveasy.demo.model.HouseSubmodels.Layout;
+import com.liveasy.demo.model.HouseSubmodels.Location;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Getter
-@Setter
 @Entity
+@NoArgsConstructor
 public class House {
 
     @Id
@@ -17,53 +20,59 @@ public class House {
     @ManyToOne
     private User user;
 
-    private String address;
-    private String postal;
-    private String city;
-    private String locality;
+    /*
+     * Originally, many properties like Address, bedroom and washroom are stored as properties in House.class
+     * However, it is much more scalable in the future and painless to do the type migration now.
+     * It also works better with Google Geo Api JSON and RestTemplate
+     */
+    @OneToOne(cascade = CascadeType.ALL)
+    private Location location;
 
-    private double lat;
-    private double lng;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Layout layout;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Comment comment;
 
-
-    private int bedrooms;
-    private int washrooms;
-    private int area;
-    private int yearBuilt;
 
     @Lob
     private Byte[] image;
 
-    public House() {
-    }
-
-    public House(String address, int bedrooms, int washrooms, int area, int yearBuilt) {
-        this.address = address;
-        this.bedrooms = bedrooms;
-        this.washrooms = washrooms;
-        this.area = area;
-        this.yearBuilt = yearBuilt;
-    }
-
     public String getFullAddress(){
-        return this.address + ", " + this.city;
+        return location.getFullLocation();
     }
 
-    @Override
-    public String toString() {
-        return "House{" +
-                "id=" + id +
-                ", user=" + user +
-                ", address='" + address + '\'' +
-                ", postal='" + postal + '\'' +
-                ", city='" + city + '\'' +
-                ", lat=" + lat +
-                ", lng=" + lng +
-                ", bedrooms=" + bedrooms +
-                ", washrooms=" + washrooms +
-                ", area=" + area +
-                ", yearBuilt=" + yearBuilt +
-                '}';
+    /*
+     * Why Don't we keep using Project for Setters?:
+     *      Because we want to keep a bidirectional mapping from House to its subclasses.
+     *      So, it is wise to setup setters on both side so, when a layout is assigned to a house, the house also tells
+     *      its new layout that it owns the layout now -> layout.setUser(this)
+     */
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+        location.setHouse(this);
+    }
+
+    public void setLayout(Layout layout) {
+        this.layout = layout;
+        layout.setHouse(this);
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+        comment.setHouse(this);
+    }
+
+    public void setImage(Byte[] image) {
+        this.image = image;
     }
 }

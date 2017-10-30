@@ -2,7 +2,7 @@ package com.liveasy.demo.controller;
 
 import com.liveasy.demo.command.UserCommand;
 import com.liveasy.demo.controllerAdvice.ControllerExceptionHandler;
-import com.liveasy.demo.converter.HouseToHouseCommand;
+import com.liveasy.demo.converter.HouseConverter.HouseToHouseCommand;
 import com.liveasy.demo.service.HouseService;
 import com.liveasy.demo.service.UserService;
 import org.junit.Before;

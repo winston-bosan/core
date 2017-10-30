@@ -1,8 +1,8 @@
 package com.liveasy.demo.service;
 
 import com.liveasy.demo.command.HouseCommand;
-import com.liveasy.demo.converter.HouseCommandToHouse;
-import com.liveasy.demo.converter.HouseToHouseCommand;
+import com.liveasy.demo.converter.HouseConverter.HouseCommandToHouse;
+import com.liveasy.demo.converter.HouseConverter.HouseToHouseCommand;
 import com.liveasy.demo.model.House;
 import com.liveasy.demo.model.User;
 import com.liveasy.demo.repository.HouseRepository;
@@ -99,14 +99,16 @@ public class HouseServiceImpl implements HouseService{
 
             if(houseOptional.isPresent()){
 
+
+
+
                 House houseFound = houseOptional.get();
-                houseFound.setAddress(command.getAddress());
-                houseFound.setYearBuilt(command.getYearBuilt());
-                houseFound.setWashrooms(command.getWashrooms());
-                houseFound.setBedrooms(command.getBedrooms());
-                houseFound.setArea(command.getArea());
-                houseFound.setPostal(command.getPostal());
-                houseFound.setCity(command.getCity());
+
+                houseFound.setLocation(command.getLocation());
+                houseFound.setLayout(command.getLayout());
+                houseFound.setComment(command.getComment());
+
+
                 houseFound.setImage(command.getImage());
 
             } else {

@@ -21,11 +21,5 @@ public class HouseTest {
         assertEquals(idValue,house.getId());
     }
 
-    @Test
-    public void getAddress() throws Exception {
-        String addressValue = "593 Here Street";
-        house.setAddress(addressValue);
-        assertEquals(addressValue,house.getAddress());
-    }
 
 }
