@@ -1,4 +1,4 @@
-package com.liveasy.demo.service;
+package com.liveasy.demo.service.houseService;
 
 import com.liveasy.demo.command.HouseCommand;
 import com.liveasy.demo.converter.HouseConverter.HouseCommandToHouse;
@@ -7,6 +7,7 @@ import com.liveasy.demo.model.House;
 import com.liveasy.demo.model.User;
 import com.liveasy.demo.repository.HouseRepository;
 import com.liveasy.demo.repository.UserRepository;
+import com.liveasy.demo.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

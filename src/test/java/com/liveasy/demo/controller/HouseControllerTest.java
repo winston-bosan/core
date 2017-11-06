@@ -3,8 +3,8 @@ package com.liveasy.demo.controller;
 import com.liveasy.demo.command.UserCommand;
 import com.liveasy.demo.controllerAdvice.ControllerExceptionHandler;
 import com.liveasy.demo.converter.HouseConverter.HouseToHouseCommand;
-import com.liveasy.demo.service.HouseService;
 import com.liveasy.demo.service.UserService;
+import com.liveasy.demo.service.houseService.HouseService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -20,13 +20,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class HouseControllerTest {
 
     @Mock
-    UserService userService;
+    private UserService userService;
     @Mock
-    HouseService houseService;
+    private HouseService houseService;
     @Mock
-    HouseToHouseCommand houseToHouseCommand;
-    HouseController houseController;
-    MockMvc mockMvc;
+    private HouseToHouseCommand houseToHouseCommand;
+    private HouseController houseController;
+    private MockMvc mockMvc;
 
     @Before
     public void setUp() throws Exception {

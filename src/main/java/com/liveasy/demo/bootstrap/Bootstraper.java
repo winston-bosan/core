@@ -7,7 +7,7 @@ import com.liveasy.demo.model.HouseSubmodels.Location;
 import com.liveasy.demo.model.User;
 import com.liveasy.demo.repository.HouseRepository;
 import com.liveasy.demo.repository.UserRepository;
-import com.liveasy.demo.service.MapService;
+import com.liveasy.demo.service.mapService.MapServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -25,10 +25,10 @@ public class Bootstraper implements ApplicationListener<ContextRefreshedEvent> {
 
     HouseRepository houseRepository;
     UserRepository userRepository;
-    MapService mapService;
+    MapServiceImpl mapService;
 
     @Autowired
-    public Bootstraper(HouseRepository houseRepository, UserRepository userRepository, MapService mapService) {
+    public Bootstraper(HouseRepository houseRepository, UserRepository userRepository, MapServiceImpl mapService) {
         this.houseRepository = houseRepository;
         this.userRepository = userRepository;
         this.mapService = mapService;

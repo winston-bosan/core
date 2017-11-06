@@ -2,7 +2,7 @@ package com.liveasy.demo.bootstrap;
 
 import com.liveasy.demo.repository.HouseRepository;
 import com.liveasy.demo.repository.UserRepository;
-import com.liveasy.demo.service.MapService;
+import com.liveasy.demo.service.mapService.MapServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -18,11 +18,11 @@ public class BootstraperMySQL implements ApplicationListener<ContextRefreshedEve
 
     HouseRepository houseRepository;
     UserRepository userRepository;
-    MapService mapService;
+    MapServiceImpl mapService;
     Bootstraper bootstraper;
 
     @Autowired
-    public BootstraperMySQL(HouseRepository houseRepository, UserRepository userRepository, MapService mapService, Bootstraper bootstraper) {
+    public BootstraperMySQL(HouseRepository houseRepository, UserRepository userRepository, MapServiceImpl mapService, Bootstraper bootstraper) {
         this.houseRepository = houseRepository;
         this.userRepository = userRepository;
         this.mapService = mapService;

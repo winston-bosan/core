@@ -1,109 +1,176 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+<!doctype html>
+<html lang="en"
+
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
 >
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Liveasy Landing Page">
+    <title>Lyveasy</title>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
-          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
+          integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
 
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" th:href="@{/css/layouts/index.css}">
+    <script th:src="@{/js/index.js}"></script>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+
+
 </head>
+
 <body>
-<!--/*@thymesVar id="users" type="java.util.Set<com.liveasy.demo.model.User>"*/-->
-<div class="container-fluid" style="margin-top: 20px">
 
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-primary">
+<div class="super-container">
 
-                <div class="panel-heading">
-                    <h1 class="panel-title">Everyone There is!</h1>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive" th:if="${not #lists.isEmpty(users)}">
-                        <table class="table table-hover ">
-                            <thead class="thead-inverse">
-                            <tr>
-                                <th>ID</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                            </tr>
-                            </thead>
-                            <tr th:each="user : ${users}">
-                                <!--/*@thymesVar id="user" type="com.liveasy.demo.model.User"*/-->
-                                <td th:text="${user.id}">334</td>
-                                <td th:text="${user.firstName}">Tasty Goodnees 3</td>
-                                <td th:text="${user.lastName}">Tasty Goodnees 3</td>
-                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/show'}">View</a></td>
-                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/update'}">Update</a></td>
-                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/delete'}">Delete</a></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <a class="pure-menu-heading" href="">Lyveasy</a>
+
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+                <li class="pure-menu-item"><a th:href="@{/list}" class="pure-menu-link">Listings</a></li>
+                <li class="pure-menu-item"><a th:href="@{/login}" class="pure-menu-link">Login</a></li>
+                <li class="pure-menu-item"><a th:href="@{/register}" class="pure-menu-link">Register</a></li>
+            </ul>
         </div>
-
-
-        <input type="button" class="btn btn-info text-center" value="Create new User!" onclick="location.href = '/user/new';"
-               style="margin: 0px 0px 40px 0px">
     </div>
 
-    <!--/*@thymesVar id="houses" type="java.util.Set<com.liveasy.demo.command.HouseCommand>"*/-->
+    <div class="splash-container" id="ocean">
+        <div class="splash">
+            <h1 class="splash-head">Home for the People</h1>
+            <p class="splash-subhead">
+                Just a place for people to find new homes
+            </p>
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-primary">
+            <div class="pure-g">
+                <p class="pure-u-1 pure-u-md-1-3">
+                    <a th:href="@{/list}" class="pure-button pure-button-primary">Find a Place for Me</a>
+                </p>
 
-                <div class="panel-heading">
-                    <h1 class="panel-title" >Houses of Everyone!</h1>
-                </div>
-                <div class="panel-body">
-                    <div class="table-responsive" th:if="${not #lists.isEmpty(houses)}">
-                        <table class="table table-hover ">
-                            <thead class="thead-inverse">
-                            <tr>
-                                <th>ID</th>
-                                <th>Address</th>
-                                <th>Bedrooms</th>
-                                <th>Washrooms</th>
-                                <th>YearBuilt</th>
-                                <th>View</th>
-                                <th>Update</th>
-                                <th>Delete</th>
-                            </tr>
-                            </thead>
-                            <tr th:each="house : ${houses}">
-                                <td th:text="${house.id}">9001</td>
-                                <td th:text="${house.getLocation().getAddress()}">Error</td>
-                                <td th:text="${house.getLayout().getBedrooms()}">Tasty Goodnees 3</td>
-                                <td th:text="${house.getLayout().getWashrooms()}">Tasty Goodnees 3</td>
-                                <td th:text="${house.getLayout().getYearBuilt()}">Tasty Goodnees 3</td>
-                                <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/show' }">View</a></td>
-                                <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/update'}">Update</a></td>
-                                <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/delete'}">Delete</a></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+                <p class="pure-u-1 pure-u-md-1-3">
+                    <a th:href="@{/map}" class="pure-button pure-button-primary">Give me a Map</a>
+                </p>
+
+                <p class="pure-u-1 pure-u-md-1-3">
+                    <a th:href="@{/search}" class="pure-button pure-button-primary">Give me a Search Bar</a>
+                </p>
             </div>
         </div>
     </div>
 
+    <div class="content-wrapper">
+        <div class="content">
+            <h2 class="content-head is-center">Why another housing platform?</h2>
+
+            <h3 class=" is-center">Because, uh, we actually find a place for you, instead of asking you to know what exactly you want.</h3>
 
 
+            <div class="pure-g">
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                    <h3 class="content-subhead">
+                        <i class="fa fa-mobile"></i>
+                        Housing is Hard
+                    </h3>
+                    <p>
+                        Hey! Housing acquisition is hard! The average Canadian own 5 homes in their life time. And everyone hates moving to a place you won't like after a few months.
+                    </p>
+                </div>
 
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                    <h3 class="content-subhead">
+                        <i class="fa fa-th-large"></i>
+                        Americans get all the shiny toys
+                    </h3>
+                    <p>
+                        The guy who made website came back from New York to realize that, Toronto don't
+                    </p>
+                </div>
+
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                    <h3 class="content-subhead">
+                        <i class="fa fa-check-square-o"></i>
+                        Plays Nice
+                    </h3>
+                    <p>
+                        Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ribbon l-box-lrg pure-g">
+            <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
+                <img width="300" alt="File Icons" class="pure-img-responsive" src="img/common/file-icons.png">
+            </div>
+            <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+
+                <h2 class="content-head content-head-ribbon">The page might look awesome, but this is a two man show.</h2>
+
+                <p>
+                    The whole website, front to back, was built by Simon and his Prof. Simon is a first generation immigrant here in Toronto, not born but surely raised.
+                    Bought enough houses with his parents to know the silliness surrounding the whole industry.
+                </p>
+            </div>
+        </div>
+
+        <div class="content">
+            <h2 class="content-head is-center">Dolore magna aliqua. Uis aute irure.</h2>
+
+            <div class="pure-g">
+                <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
+                    <form class="pure-form pure-form-stacked">
+                        <fieldset>
+
+                            <label for="name">Your Name</label>
+                            <input id="name" type="text" placeholder="Your Name">
+
+
+                            <label for="email">Your Email</label>
+                            <input id="email" type="email" placeholder="Your Email">
+
+                            <label for="password">Your Password</label>
+                            <input id="password" type="password" placeholder="Your Password">
+
+                            <button type="submit" class="pure-button">Sign Up</button>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
+                    <h4>Contact Us</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat.
+                    </p>
+
+                    <h4>More Information</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!--
+        <div class="footer l-box is-center">
+            View the source of this layout to learn more. Made with love by the YUI Team.
+        </div>
+        -->
+
+    </div>
 </div>
+
+
 
 </body>
 </html>

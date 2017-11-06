@@ -1,7 +1,11 @@
 package com.liveasy.demo.model;
 
+import com.liveasy.demo.model.UserSubmodels.VerificationToken;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,21 +29,37 @@ public class User {
     /*
     The Password of the User. Required at Sign-up.
      */
+    @Transient
     private String password;
+    private String encryptedPassword;
+    private Boolean enabled = true;
+
+
     private String firstName;
     private String lastName;
     private int active;
     private String description;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private VerificationToken verificationToken;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     @OrderBy("id")
     private Set<House> houses = new HashSet<>();
 
-    @Enumerated(value = EnumType.STRING)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable
+    // ~ defaults to @JoinTable(name = "USER_ROLE", joinColumns = @JoinColumn(name = "user_id"),
+    //     inverseJoinColumns = @joinColumn(name = "role_id"))
+    private List<Role> roles = new ArrayList<>();
+
     @Enumerated(value = EnumType.STRING)
     private Purpose purpose;
 
+    public User(){
+        super();
+        this.enabled = false;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -121,13 +141,29 @@ public class User {
         houses.add(house);
     }
 
-    public Role getRole() {
-        return role;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
+
+    public void addRole(Role role){
+        if(!this.roles.contains(role)){
+            this.roles.add(role);
+        }
+
+        if(!role.getUsers().contains(this)){
+            role.getUsers().add(this);
+        }
+    }
+
+    public void removeRole(Role role){
+        this.roles.remove(role);
+        role.getUsers().remove(this);
+    }
+
 
     public Purpose getPurpose() {
         return purpose;
@@ -135,5 +171,37 @@ public class User {
 
     public void setPurpose(Purpose purpose) {
         this.purpose = purpose;
+    }
+
+    public VerificationToken getVerificationToken() {
+        return verificationToken;
+    }
+
+    public void setVerificationToken(VerificationToken verificationToken) {
+        this.verificationToken = verificationToken;
+    }
+
+    public String getEncryptedPassword() {
+        return encryptedPassword;
+    }
+
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

@@ -1,6 +1,6 @@
 package com.liveasy.demo.controller;
 
-import com.liveasy.demo.service.HouseService;
+import com.liveasy.demo.service.houseService.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ public class MapController {
     @GetMapping("/map")
     public String seeMap(Model model){
         model.addAttribute("houses",houseService.getAllHouses());
-        return "hellotest";
+        return "mapview";
     }
 
 

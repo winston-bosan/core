@@ -1,4 +1,4 @@
-package com.liveasy.demo.service;
+package com.liveasy.demo.service.imageService;
 
 import com.liveasy.demo.model.House;
 import com.liveasy.demo.repository.HouseRepository;

@@ -1,4 +1,4 @@
-package com.liveasy.demo.service;
+package com.liveasy.demo.service.mapService;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -6,6 +6,7 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
 import com.liveasy.demo.model.House;
+import com.liveasy.demo.service.houseService.HouseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,11 +26,11 @@ import java.io.File;
 
 @Slf4j
 @Service
-public class MapService {
+public class MapServiceImpl {
     private final HouseService houseService;
 
     @Autowired
-    public MapService(HouseService houseService) {
+    public MapServiceImpl(HouseService houseService) {
         this.houseService = houseService;
     }
 

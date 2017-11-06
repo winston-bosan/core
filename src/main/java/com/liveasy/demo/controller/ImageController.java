@@ -1,9 +1,9 @@
 package com.liveasy.demo.controller;
 
 import com.liveasy.demo.command.HouseCommand;
-import com.liveasy.demo.service.HouseService;
-import com.liveasy.demo.service.ImageService;
 import com.liveasy.demo.service.UserService;
+import com.liveasy.demo.service.houseService.HouseService;
+import com.liveasy.demo.service.imageService.ImageService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;

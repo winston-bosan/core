@@ -5,6 +5,7 @@ import com.liveasy.demo.converter.UserConverter.UserToUserCommand;
 import com.liveasy.demo.model.User;
 import com.liveasy.demo.repository.HouseRepository;
 import com.liveasy.demo.repository.UserRepository;
+import com.liveasy.demo.service.encryptionService.EncryptionService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -26,13 +27,16 @@ public class UserServiceImplTest {
     UserToUserCommand userToUserCommand;
     @Mock
     UserCommandToUser userCommandToUser;
+    @Mock
+    EncryptionService encryptionService;
+
 
     UserService userService;
 
     @Before
     public void setup(){
         MockitoAnnotations.initMocks(this);
-        userService = new UserServiceImpl(userRepository, userCommandToUser, userToUserCommand);
+        userService = new UserServiceImpl(userRepository, userCommandToUser, userToUserCommand, encryptionService);
     }
 
     @Test

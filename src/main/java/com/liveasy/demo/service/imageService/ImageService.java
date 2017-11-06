@@ -1,4 +1,4 @@
-package com.liveasy.demo.service;
+package com.liveasy.demo.service.imageService;
 
 
 import org.springframework.web.multipart.MultipartFile;

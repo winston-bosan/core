@@ -1,4 +1,4 @@
-package com.liveasy.demo.service;
+package com.liveasy.demo.service.houseService;
 
 import com.liveasy.demo.command.HouseCommand;
 import com.liveasy.demo.model.House;

@@ -34,7 +34,6 @@ public class House {
     @OneToOne(cascade = CascadeType.ALL)
     private Comment comment;
 
-
     @Lob
     private Byte[] image;
 
