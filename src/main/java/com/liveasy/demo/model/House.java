@@ -42,7 +42,7 @@ public class House {
     }
 
     /*
-     * Why Don't we keep using Project for Setters?:
+     * Why Don't we keep using Project Lombok for Setters?:
      *      Because we want to keep a bidirectional mapping from House to its subclasses.
      *      So, it is wise to setup setters on both side so, when a layout is assigned to a house, the house also tells
      *      its new layout that it owns the layout now -> layout.setUser(this)

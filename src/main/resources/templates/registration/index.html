@@ -1,114 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+
+>
 <head>
-    <meta charset="UTF-8"/>
-    <title>user Form</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
           th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="css/layouts/registration/index.css" th:href="@{css/layouts/registration/index.css}">
 
-    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<!--/*@thymesVar id="user" type="com.liveasy.demo.model.User"*/-->
-<div class="container-fluid" style="margin-top: 20px">
 
-    <input type="button" class="btn btn-info btn-block" value="Go Back to Main Page" onclick="location.href = '/';"
-           style="margin: 0px 0px 40px 0px">
+<div id="progress"></div>
 
+    <div class="center">
+        <div id="register">
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+            <i id="progressButton" class="ion-android-arrow-forward next"></i>
 
+            <div id="inputContainer">
+                <input id="inputField" required autofocus />
+                <label id="inputLabel"></label>
+                <div id="inputProgress"></div>
+            </div>
 
-            <form  th:object="${user}" th:action="@{'/user/'}" method="post">
-
-                <!-- Error Statement -->
-                <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger"><p>Please Correct Error Below</p></div>
-
-                <input type="hidden" th:field="*{id}"/>
-                <input type="hidden" th:field="*{houses}"/>
-                <div class="pannel-group">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h1 class="panel-title">Registration</h1>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-3 form-group">
-                                    <label>I am here to be a: </label>
-                                    <!--/*@thymesVar id="purpose" type="com.liveasy.demo.model.Purpose"*/-->
-                                    <select class="form-control" th:field="*{purpose}">
-                                        <option th:each = "purpose : ${T(com.liveasy.demo.model.Purpose).values()}"
-                                                th:value="${purpose.name()}"
-                                                th:text="${purpose.name()}"
-                                        >
-                                            val
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-md-3 form-group" th:class="${#fields.hasErrors('firstName')} ?
-                                'col-md-3 form-group has-error' : 'col-md-3 form-group'">
-                                    <label>First Name:</label>
-                                    <input type="text" class="form-control" th:field="*{firstName}"/>
-
-                                    <!--Help Block for: firstName
-                                        > It shows the div help block only when fields has errors which belongs to firstName
-                                        > then, in the list, it shows every single errors included in the array of errors that belongs to firstName-->
-                                    <span class="help-block" th:if="${#fields.hasErrors('firstName')}" >
-                                        <ul>
-                                            <li th:each="err : ${#fields.errors('firstName')}" th:text="${err}"></li>
-                                        </ul>
-                                    </span>
-
-                                </div>
-
-                                <div class="col-md-3 form-group" th:class="${#fields.hasErrors('lastName')} ?
-                                'col-md-3 form-group has-error' : 'col-md-3 form-group'">
-                                    <label>Last Name:</label>
-                                    <input type="text" class="form-control" th:field="*{lastName}"/>
-
-                                    <!--Help Block for: lastName-->
-                                    <span class="help-block" th:if="${#fields.hasErrors('lastName')}" >
-                                        <ul>
-                                            <li th:each="err : ${#fields.errors('lastName')}" th:text="${err}"></li>
-                                        </ul>
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-5 form-group">
-                                    <label>Email :</label>
-                                    <input type="text" class="form-control" th:field="*{email}"/>
-                                </div>
-                                <div class="col-md-5 form-group">
-                                    <label>Password :</label>
-                                    <input type="text" class="form-control" th:field="*{password}"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Submit</button>
-
-                </div>
-            </form>
         </div>
     </div>
-</div>
+
+<script src="js/registration/index.js"></script>
+
 </body>
 </html>

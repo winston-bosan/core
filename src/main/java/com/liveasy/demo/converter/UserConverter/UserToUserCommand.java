@@ -30,6 +30,7 @@ public class UserToUserCommand implements Converter<User,UserCommand> {
         userCommand.setRoles(source.getRoles());
         userCommand.setDescription(source.getDescription());
         userCommand.setPurpose(source.getPurpose());
+        userCommand.setPreference(source.getPreference());
 
 
         return userCommand;

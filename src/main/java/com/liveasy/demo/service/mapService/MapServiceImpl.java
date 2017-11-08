@@ -1,7 +1,5 @@
 package com.liveasy.demo.service.mapService;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
@@ -69,13 +67,29 @@ public class MapServiceImpl {
 
             GeocodingResult[] results =  GeocodingApi.geocode(context,
                 house.getFullAddress()).await();
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            //Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+            /*
+            GeocodingResult abc = new GeocodingResult();
+            for (Field field : abc.getClass().getDeclaredFields()) {
+                field.setAccessible(true);
+                String name = field.getName();
+                Object value = field.get(abc);
+                System.out.printf("Field name: %s, Field value: %s%n", name, value);
+            }
+
+            */
 
             house.getLocation().setCity((results[0].addressComponents[3].longName));
             house.getLocation().setPostalCode((results[0].addressComponents[7].longName));
             house.getLocation().setLat(results[0].geometry.location.lat);
             house.getLocation().setLng(results[0].geometry.location.lng);
+
+            house.getLocation().setLocality(results[0].addressComponents[2].longName);
+            house.getLocation().setProvince(results[0].addressComponents[5].longName);
+            house.getLocation().setCountry(results[0].addressComponents[6].longName);
+
+            house.getLocation().setFormattedAddress(results[0].formattedAddress);
 
             houseService.saveHouse(house);
         } catch (Exception e){}

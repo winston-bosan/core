@@ -1,0 +1,230 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*
+ * -- BASE STYLES --
+ * Most of these are inherited from Base, but I want to change a few.
+ */
+body {
+    line-height: 1.7em;
+    color: #7f8c8d;
+    font-size: 15px;
+    background-color: rgba(230,230,230,1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+    color: #34495e;
+    margin: 0;
+}
+
+
+h5{
+    margin:0.5em 0 0.5em 0;
+    font-size: 190%;
+}
+.dropdown-content {
+    background-color: #FFFFFF;
+    margin: 0;
+    display: none;
+    min-width: 260px; /* Changed this to accomodate content width */
+    width: auto;
+    max-height: auto;
+
+    /*SUPER HACKY OMG CHANGE THIS*/
+    margin-left: -1px; /* Add this to keep dropdown in line with edge of navbar */
+    overflow: hidden; /* Changed this from overflow-y:auto; to overflow:hidden; */
+    opacity: 0;
+    position: relative;
+    white-space: nowrap;
+    z-index: 1;
+    will-change: width, height;
+}
+
+.all-nav li{
+    font-size: 200%;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+#index-banner{
+    margin: 0;
+    position: relative;
+    top: calc(50% - 60px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.get-middle{
+    margin: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.grand{
+    font-size: 600%;
+    font-weight: bolder;
+    font-color: #1de9b6;
+}
+
+.logo{
+    height: 45px;
+    width: auto;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+
+.nav-wrapper{
+    width: 99vw;
+}
+
+#center-container{
+    height: calc(100vh - 60px);
+}
+
+.transparent-teal{
+    background-color: rgba(93, 212, 160, 0.33);
+
+}
+
+.translucent-teal{
+    background-color: rgba(93, 212, 160, 0.66);
+
+}
+
+.opaque-teal{
+    background-color: rgba(93, 212, 160, 1);
+}
+
+.dark-teal{
+    background-color: rgb(38,178,164);
+}
+
+.liveasy-blue-text{
+    color: rgb(30,55,75);
+}
+
+.liveasy-grey-text{
+    color: rgb(195,195,195);
+}
+
+
+.grand-container{
+    /*background-image: url("https://orig00.deviantart.net/3891/f/2011/150/d/8/future_cityscape_by_biz02-d3hncs0.jpg");*/
+
+    /*background-image: url("https://orig00.deviantart.net/f6c7/f/2017/011/f/3/first_snow_by_pixeypin-dav3y7g.jpg");*/
+
+    background-size: cover;
+    /*background-color: white;*/
+
+}
+
+.full-screen{
+    min-height: 90vh;
+    height: auto;
+}
+
+.test{
+    padding-left: 1em;
+    padding-right: 1em;
+
+}
+
+.search{
+    text-align: center;
+    color: black;
+}
+
+.input-field input[type=text] {
+    border: 1px solid grey;
+    background-color: rgba(255,255,255,.6);
+}
+
+.input-field input[type=text]:focus {
+    border: 1px solid teal;
+    background-color: rgba(255,255,255,.8);
+    box-shadow: 0 0px 0 0 #000;
+}
+
+/*
+ * Mid Section Specific Style
+ */
+
+#mid-section{
+    width: 100%;
+    background-color: rgb(255,255,255);
+    min-height: 500px;
+}
+
+/*
+ * Lower Section Cards
+ */
+#low-section{
+    padding-top: 4%;
+}
+
+.card-image{
+    width: 60%;
+    height: auto;
+    margin-top: 5%;
+}
+
+.card-title{
+    font-size: 300%;
+}
+
+p{
+    padding: 0.2em 0 0.2em 0;
+    font-size:100%;
+}
+
+
+/*
+IMPORTANT STYLE -> CONSIDER MAKE THIS UNIVERSAL!
+ */
+
+.tight-container {
+    margin: 0 auto;
+    max-width: 1080px;
+    width: 80%;
+}
+
+@media only screen and (min-width: 601px) {
+    .tight-container {
+        width: 75%;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .tight-container {
+        width: 65%;
+    }
+}
+
+.tight-container .row {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+}

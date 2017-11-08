@@ -48,6 +48,7 @@ public class RegisterController {
         }
 
         UserCommand saveCommand = userService.saveUserCommand(command);
+        log.debug(saveCommand.toString());
         return"redirect:/login";
     }
 

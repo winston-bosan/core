@@ -1,5 +1,6 @@
 package com.liveasy.demo.model;
 
+import com.liveasy.demo.model.UserSubmodels.Preference;
 import com.liveasy.demo.model.UserSubmodels.VerificationToken;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class User {
     //@NotEmpty(message = "* Please provide an Email!")
     //@Email(message = "* Please provide a valid Email!")
     private String email;
+    private String username;
 
     /*
     The Password of the User. Required at Sign-up.
@@ -43,7 +45,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private VerificationToken verificationToken;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
     @OrderBy("id")
     private Set<House> houses = new HashSet<>();
 
@@ -56,9 +58,12 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Purpose purpose;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Preference preference = new Preference();
+
     public User(){
         super();
-        this.enabled = false;
+        this.enabled = true;
     }
 
     @Override
@@ -84,8 +89,13 @@ public class User {
         return email;
     }
 
+    public String getUsername(){ return email; }
+
+    public void setUsername(String username) {this.email = username; this.username = username;}
+
     public void setEmail(String email) {
         this.email = email;
+        this.username = email;
     }
 
     public String getPassword() {
@@ -203,5 +213,14 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Preference getPreference() {
+        return preference;
+    }
+
+    public void setPreference(Preference preference) {
+        this.preference = preference;
+        this.preference.setUser(this);
     }
 }

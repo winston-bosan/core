@@ -4,7 +4,7 @@
 
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 >
 <head>
     <meta charset="UTF-8">
@@ -22,26 +22,23 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
+
 <body>
 <!--/*@thymesVar id="users" type="java.util.Set<com.liveasy.demo.model.User>"*/-->
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
 
-            <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
-                Logged in user: <span sec:authentication="name"></span> |
-                Roles: <span sec:authentication="principal.authorities"></span>
-                <div>
-                    <form action="#" th:action="@{/logout}" method="post">
-                        <input type="submit" value="Logout" />
-                    </form>
-                </div>
-            </div>
-            <h1>Hello Spring Security</h1>
-            <p>This is an unsecured page, but you can access the secured pages after authenticating.</p>
-            <ul>
-                <li>Go to the <a href="/user/index" th:href="@{/user/index}">secured pages</a></li>
+            <ul sec:authorize="isAuthenticated()">
+                <li><p><span sec:authentication="name">test</span></p> </li>
+                <li><a href="logout.html " th:href="@{/logout}">Logout</a> </li>
             </ul>
+
+            <ul sec:authorize="isAnonymous()">
+                <li><a href="signup.html" th:href="@{/signup}">Sign Up</a> </li>
+                <li><a href="login.html " th:href="@{/login}">Login</a> </li>
+            </ul>
+
         </div>
     </div>
 
@@ -67,9 +64,9 @@
                                 <td th:text="${user.id}">334</td>
                                 <td th:text="${user.firstName}">Tasty Goodnees 3</td>
                                 <td th:text="${user.lastName}">Tasty Goodnees 3</td>
-                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/show'}">View</a></td>
-                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/update'}">Update</a></td>
-                                <td><a href="#" th:href="@{'/user/' + ${user.id} + '/delete'}">Delete</a></td>
+                                <td sec:authorize="hasAnyAuthority('USER','ADMIN')"><a href="#" th:href="@{'/user/' + ${user.id} + '/show'}">View</a></td>
+                                <td sec:authorize="hasAnyAuthority('ADMIN')"><a href="#" th:href="@{'/user/' + ${user.id} + '/update'}">Update</a></td>
+                                <td sec:authorize="hasAnyAuthority('ADMIN')"><a href="#" th:href="@{'/user/' + ${user.id} + '/delete'}">Delete</a></td>
                             </tr>
                         </table>
                     </div>
@@ -101,9 +98,6 @@
                                 <th>Bedrooms</th>
                                 <th>Washrooms</th>
                                 <th>YearBuilt</th>
-                                <th>View</th>
-                                <th>Update</th>
-                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tr th:each="house : ${houses}">
@@ -112,9 +106,9 @@
                                 <td th:text="${house.getLayout().getBedrooms()}">Tasty Goodnees 3</td>
                                 <td th:text="${house.getLayout().getWashrooms()}">Tasty Goodnees 3</td>
                                 <td th:text="${house.getLayout().getYearBuilt()}">Tasty Goodnees 3</td>
-                                <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/show' }">View</a></td>
-                                <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/update'}">Update</a></td>
-                                <td><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/delete'}">Delete</a></td>
+                                <td sec:authorize="hasAnyAuthority('USER','ADMIN')" ><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/show' }">View</a></td>
+                                <td sec:authorize="hasAnyAuthority('ADMIN')"><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/update'}">Update</a></td>
+                                <td sec:authorize="hasAnyAuthority('ADMIN')"><a href="#" th:href="@{'/user/' + ${house.getUser().getId()} + '/houses/' + ${house.id} + '/delete'}">Delete</a></td>
                             </tr>
                         </table>
                     </div>

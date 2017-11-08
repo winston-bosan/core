@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en"
+
+      xmlns="http://www.w3.org/1999/xhtml"
+
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Questionaire</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
+    <link href="css/layouts/question/index.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+</head>
+<body>
+
+<div id="container">
+    <form method="post" name="answer">
+        <h1>Tell us!</h1>
+        <hr>
+        <div id="first">
+            <label for="sliderOne">TEST1</label>
+            <input type="range" id="sliderOne" name="one" min=0 max=10 value=0>
+            <div class="score" id="ratingOne">0</div>
+        </div>
+
+        <div id="second">
+            <label for="sliderTwo">TEST2</label>
+            <input type="range" id="sliderTwo" name="two" min=0 max=10 value=0>
+            <div class="score" id="ratingTwo">0</div>
+        </div>
+
+        <div id="third">
+            <label for="sliderThree">TEST3</label>
+            <input type="range" id="sliderThree" name="three" min=0 max=10 value=0>
+            <div class="score" id="ratingThree">0</div>
+        </div>
+
+        <div id="fourth">
+            <label for="sliderThree">TEST4</label>
+            <input type="range" id="sliderFour" name="four" min=0 max=10 value=0>
+            <div class="score" id="ratingFour">0</div>
+        </div>
+
+        <div id="fifth">
+            <label for="sliderThree">TEST5</label>
+            <input type="range" id="sliderFive" name="five" min=0 max=10 value=0>
+            <div class="score" id="ratingFive">0</div>
+        </div>
+
+        <div id="sixth">
+            <label for="sliderThree">TEST6</label>
+            <input type="range" id="sliderSix" name="six" min=0 max=10 value=0>
+            <div class="score" id="ratingSix">0</div>
+        </div>
+
+        <div id="seventh">
+            <label for="sliderThree">TEST7</label>
+            <input type="range" id="sliderSeventh" name="seven" min=0 max=10 value=0>
+            <div class="score" id="ratingSeventh">0</div>
+        </div>
+
+        <input type="submit" value="Submit" action="post">
+    </form>
+</div>
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!--<script src="js/materialize.js"></script>-->
+<script src="js/question/index.js"></script>
+
+</body>
+</html>

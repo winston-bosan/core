@@ -3,174 +3,381 @@
 
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+
 >
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Liveasy Landing Page">
-    <title>Lyveasy</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>Starter Template - Materialize</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
-          integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" th:href="@{/css/layouts/index.css}">
-    <script th:src="@{/js/index.js}"></script>
-
-
-
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="css/layouts/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 </head>
 
+
+
 <body>
 
+<div class="grand-container">
 
-<div class="super-container">
+    <div class="all-nav">
+        <!-- Dropdown Structure -->
+        <ul id="dropdown0" class="dropdown-content collection">
+            <li><a th:href="@{/sell/new-listing}">Who are you? What is this?</a></li>
+            <li class="divider"></li>
+            <li><a th:href="@{/sell}">Contact Us</a></li>
+        </ul>
 
-    <div class="header">
-        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-            <a class="pure-menu-heading" href="">Lyveasy</a>
+        <ul id="dropdown1" class="dropdown-content collection">
+            <li><a th:href="@{/map/}">Find a Home</a></li>
+            <li class="divider"></li>
+            <li><a th:href="@{/buy/tour}">Book a Tour</a></li>
+            <li><a th:href="@{/buy/create-offer}">Create an Offer</a></li>
+            <li><a th:href="@{/faq}" >Buyer FAQ</a></li>
+        </ul>
 
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
-                <li class="pure-menu-item"><a th:href="@{/list}" class="pure-menu-link">Listings</a></li>
-                <li class="pure-menu-item"><a th:href="@{/login}" class="pure-menu-link">Login</a></li>
-                <li class="pure-menu-item"><a th:href="@{/register}" class="pure-menu-link">Register</a></li>
-            </ul>
-        </div>
+
+        <ul id="dropdown2" class="dropdown-content collection">
+            <li><a th:href="@{/sell/new-listing}">Listing your Home</a></li>
+            <li class="divider"></li>
+            <li><a th:href="@{/sell}">How does it all work?</a></li>
+            <li><a th:href="@{/faq}" >Seller FAQ</a></li>
+        </ul>
+
+        <ul id="dropdown9" class="dropdown-content collection">
+            <li><a th:href="@{/home}">Dashboard</a></li>
+            <li><a th:href="@{/logout}" >Log Out</a></li>
+        </ul>
+
+
+        <nav class="opaque-teal" role="navigation" id="test">
+            <div class="nav-wrapper tight-container">
+                <a id="logo-container" href="#" class="brand-logo"><img class="logo" src="images/logo.png"></a>
+                <ul class="right hide-on-med-and-down">
+
+                    <li><a class="dropdown-button-1" href="#" data-activates="dropdown1" data-beloworigin="true">
+                        Buy<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button-2" href="#" data-activates="dropdown2" data-beloworigin="true">
+                        Sell<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button-3" href="#" data-activates="dropdown3" data-beloworigin="true">
+                        Rent<i class="material-icons right">arrow_drop_down</i></a></li>
+                    <li><a class="dropdown-button-0" href="#" data-activates="dropdown0" data-beloworigin="true">
+                        About<i class="material-icons right">arrow_drop_down</i></a></li>
+
+                    <li sec:authorize="isAnonymous()"><a href="#" th:href="@{/login}">Login In</a></li>
+                    <li sec:authorize="isAnonymous()"> <a href="#" th:href="@{/register}">Register</a></li>
+                    <li sec:authorize="isAuthenticated()">
+                        <a class="dropdown-button-9" href="#" data-activates="dropdown9" data-beloworigin="true">
+                        Welcome, Johnson</a>
+                    </li>
+
+                </ul>
+
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a href="#">Navbar Link</a></li>
+                </ul>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
     </div>
 
-    <div class="splash-container" id="ocean">
-        <div class="splash">
-            <h1 class="splash-head">Home for the People</h1>
-            <p class="splash-subhead">
-                Just a place for people to find new homes
-            </p>
-
-            <div class="pure-g">
-                <p class="pure-u-1 pure-u-md-1-3">
-                    <a th:href="@{/list}" class="pure-button pure-button-primary">Find a Place for Me</a>
-                </p>
-
-                <p class="pure-u-1 pure-u-md-1-3">
-                    <a th:href="@{/map}" class="pure-button pure-button-primary">Give me a Map</a>
-                </p>
-
-                <p class="pure-u-1 pure-u-md-1-3">
-                    <a th:href="@{/search}" class="pure-button pure-button-primary">Give me a Search Bar</a>
-                </p>
+    <div id="center-container">
+        <div class="tight-container" id="index-banner">
+            <br><br>
+            <span>
+                <h1 class="center liveasy-blue grand col s12 m6 l3">Home For the People</h1>
+            </span>
+            <div class="row center">
+                <h5 class="header col s12 light liveasy-grey">A modern Machine-Learning enhanced Housing Marketplace </h5>
             </div>
-        </div>
-    </div>
+            <div class="row center">
+                <a th:href="@{/map}" id="buy-button" class="btn-large waves-effect waves-heavy translucent-teal col s6 m3 l2 offset-l2">Map View</a>
+                <a th:href="@{/list}" id="download-button" class="btn-large waves-effect waves-heavy translucent-teal col s6 m3 l2">Market Analysis</a>
+                <a th:href="@{/question}" id="download-button" class="btn-large waves-effect waves-heavy translucent-teal col s6 m3 l2">Algorithmic</a>
+                <a th:href="@{/map}" id="download-button" class="btn-large waves-effect waves-heavy translucent-teal col s6 m3 l2 active">Search Bar</a>
 
-    <div class="content-wrapper">
-        <div class="content">
-            <h2 class="content-head is-center">Why another housing platform?</h2>
-
-            <h3 class=" is-center">Because, uh, we actually find a place for you, instead of asking you to know what exactly you want.</h3>
-
-
-            <div class="pure-g">
-                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
-                    <h3 class="content-subhead">
-                        <i class="fa fa-mobile"></i>
-                        Housing is Hard
-                    </h3>
-                    <p>
-                        Hey! Housing acquisition is hard! The average Canadian own 5 homes in their life time. And everyone hates moving to a place you won't like after a few months.
-                    </p>
-                </div>
-
-                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
-                    <h3 class="content-subhead">
-                        <i class="fa fa-th-large"></i>
-                        Americans get all the shiny toys
-                    </h3>
-                    <p>
-                        The guy who made website came back from New York to realize that, Toronto don't
-                    </p>
-                </div>
-
-                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
-                    <h3 class="content-subhead">
-                        <i class="fa fa-check-square-o"></i>
-                        Plays Nice
-                    </h3>
-                    <p>
-                        Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="ribbon l-box-lrg pure-g">
-            <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
-                <img width="300" alt="File Icons" class="pure-img-responsive" src="img/common/file-icons.png">
-            </div>
-            <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
-
-                <h2 class="content-head content-head-ribbon">The page might look awesome, but this is a two man show.</h2>
-
-                <p>
-                    The whole website, front to back, was built by Simon and his Prof. Simon is a first generation immigrant here in Toronto, not born but surely raised.
-                    Bought enough houses with his parents to know the silliness surrounding the whole industry.
-                </p>
-            </div>
-        </div>
-
-        <div class="content">
-            <h2 class="content-head is-center">Dolore magna aliqua. Uis aute irure.</h2>
-
-            <div class="pure-g">
-                <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                    <form class="pure-form pure-form-stacked">
-                        <fieldset>
-
-                            <label for="name">Your Name</label>
-                            <input id="name" type="text" placeholder="Your Name">
-
-
-                            <label for="email">Your Email</label>
-                            <input id="email" type="email" placeholder="Your Email">
-
-                            <label for="password">Your Password</label>
-                            <input id="password" type="password" placeholder="Your Password">
-
-                            <button type="submit" class="pure-button">Sign Up</button>
-                        </fieldset>
-                    </form>
-                </div>
-
-                <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
-                    <h4>Contact Us</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
-                    </p>
-
-                    <h4>More Information</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
             </div>
 
-        </div>
+            <form>
+                <div class="input-field col s10 m8 l3">
+                    <input id="autocomplete" type="text" class="search" placeholder="Enter your address"
+                           onFocus="geolocate()">
+                    <label for="autocomplete"></label>
+                </div>
+            </form>
 
-        <!--
-        <div class="footer l-box is-center">
-            View the source of this layout to learn more. Made with love by the YUI Team.
-        </div>
-        -->
 
+            <br><br>
+
+        </div>
     </div>
 </div>
 
+    <div class="" id="mid-section">
 
+        <div class="container center">
+            <div class="row">
+                <div class="col s12 m12">
+                    <h2 class="header">Horizontal Card</h2>
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="https://lorempixel.com/100/190/nature/6">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container full-screen" id="low-section">
+        <div class="section valign-wrapper">
+
+            <div class="row">
+
+                <div class="col s12 m4 l4">
+                    <div class="card">
+                        <div class="center">
+                            <img class="card-image" src="https://image.flaticon.com/icons/png/512/306/306180.png">
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title center">Locate the Neighborhood</h4>
+                            <p>&#32;</p>
+                            <p class="center">We have always tried to surround ourselves with the best people.</p>
+                            <p class="center">Now we should do it with Neighbours.</p>
+
+                            <p class="center">Through historical analysis and looking into the future, we will try to find the best neighborhood for your
+                                security, investment, and social needs.</p>
+                        </div>
+                        <div class="card-action center">
+                            <a href="#">We can Solve this using Machine Learning</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m4 l4">
+                    <div class="card">
+                        <div class="center">
+                            <img class="card-image" src="https://image.flaticon.com/icons/png/512/306/306154.png">
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title center">Find the House You Need</h4>
+                            <p>&#32;</p>
+                            <p class="center">There has been an imbalance of information.</p>
+                            <p class="center"> We might have all the
+                                possibilities to search for houses, but we always have doubts about if the house will
+                                really suit our needs, and become a good investment for the future.</p>
+                        </div>
+                        <div class="card-action center">
+                            <a href="#">We can Solve this using Machine Learning</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col s12 m4 l4">
+                    <div class="card">
+                        <div class="center">
+                            <img class="card-image" src="https://image.flaticon.com/icons/png/512/306/306156.png">
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title center">The Right People,</h4>
+                            <h4 class="card-title center">and The Right Advice</h4>
+
+                            <p>&#32;</p>
+                            <p class="center">There has been an imbalance of information.</p>
+                            <p class="center"> We might have all the
+                                possibilities to search for houses, but we always have doubts about if the house will
+                                really suit our needs, and become a good investment for the future.</p>
+                        </div>
+                        <div class="card-action center">
+                            <a href="#">We can Solve this using Machine Learning</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            </div>
+        <br><br>
+        </div>
+    </div>
+
+    <footer class="page-footer teal">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Company Bio</h5>
+                    <p class="grey-text text-lighten-4">
+                        Less like a Company and more like a Partnership, Liveasy was founded by Simon and Bari in 2017.
+                    </p>
+                    <p>
+                        Simon came to Toronto at a young age and has spent more than 10 years in Canada. Simon had work experience in finance as well as IT. Bari is a
+                        Professor of New York University, and a expert in Predictive Analysis.
+                    </p>
+                    <p>
+                        Instead of making Wallstreet richer, we have decided to make Torontonians happier.
+                    </p>
+
+
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Settings</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+                <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                        <li><a class="white-text" href="#!">Link 1</a></li>
+                        <li><a class="white-text" href="#!">Link 2</a></li>
+                        <li><a class="white-text" href="#!">Link 3</a></li>
+                        <li><a class="white-text" href="#!">Link 4</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                Property of <a class="teal-text text-lighten-3" href="http://materializecss.com"> Liveasy Inc </a>
+            </div>
+        </div>
+    </footer>
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"
+        th:src="@{webjars/jquery/3.2.1/jquery.js}"></script>
+<!--<script src="js/materialize.js"></script>-->
+<script src="js/index.js"></script>
+<script src="js/materialize.js"></script>
+
+<script>
+
+    var words = document.getElementsByClassName('word');
+    var wordArray = [];
+    var currentWord = 0;
+
+    words[currentWord].style.opacity = 1;
+    for (var i = 0; i < words.length; i++) {
+        splitLetters(words[i]);
+    }
+
+    function changeWord() {
+        var cw = wordArray[currentWord];
+        var nw = currentWord == words.length-1 ? wordArray[0] : wordArray[currentWord+1];
+        for (var i = 0; i < cw.length; i++) {
+            animateLetterOut(cw, i);
+        }
+
+        for (var i = 0; i < nw.length; i++) {
+            nw[i].className = 'letter behind';
+            nw[0].parentElement.style.opacity = 1;
+            animateLetterIn(nw, i);
+        }
+
+        currentWord = (currentWord == wordArray.length-1) ? 0 : currentWord+1;
+    }
+
+    function animateLetterOut(cw, i) {
+        setTimeout(function() {
+            cw[i].className = 'letter out';
+        }, i*80);
+    }
+
+    function animateLetterIn(nw, i) {
+        setTimeout(function() {
+            nw[i].className = 'letter in';
+        }, 340+(i*80));
+    }
+
+    function splitLetters(word) {
+        var content = word.innerHTML;
+        word.innerHTML = '';
+        var letters = [];
+        for (var i = 0; i < content.length; i++) {
+            var letter = document.createElement('span');
+            letter.className = 'letter';
+            letter.innerHTML = content.charAt(i);
+            word.appendChild(letter);
+            letters.push(letter);
+        }
+
+        wordArray.push(letters);
+    }
+
+    changeWord();
+    setInterval(changeWord, 4000);
+
+
+</script>
+<script>
+    // This example adds a search box to a map, using the Google Place Autocomplete
+    // feature. People can enter geographical searches. The search box will return a
+    // pick list containing a mix of places and predicted search terms.
+
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+    var placeSearch, autocomplete;
+    var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+    };
+
+    function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+    }
+
+    // Bias the autocomplete object to the user's geographical location,
+    // as supplied by the browser's 'navigator.geolocation' object.
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var geolocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                var circle = new google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy
+                });
+                autocomplete.setBounds(circle.getBounds());
+            });
+        }
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlcxyPzDn8D8lObVhl0uPd9DK0m1RoUlM&libraries=places&callback=initAutocomplete"
+        async defer></script>
 
 </body>
 </html>

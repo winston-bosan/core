@@ -13,4 +13,5 @@ public class CommonBeanConfig {
         return encryptor;
     }
 
+
 }

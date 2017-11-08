@@ -3,6 +3,7 @@ package com.liveasy.demo.command;
 import com.liveasy.demo.model.House;
 import com.liveasy.demo.model.Purpose;
 import com.liveasy.demo.model.Role;
+import com.liveasy.demo.model.UserSubmodels.Preference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -45,6 +46,23 @@ public class UserCommand {
     private List<Role> roles = new ArrayList<>();
     private Purpose purpose;
 
+    private Boolean enabled = true;
 
+    private Preference preference;
 
+    @Override
+    public String toString() {
+        return "UserCommand{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", description='" + description + '\'' +
+                ", active=" + active +
+                ", houses=" + houses +
+                ", roles=" + roles +
+                ", purpose=" + purpose +
+                '}';
+    }
 }

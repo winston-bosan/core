@@ -1,16 +1,12 @@
-// make some waves.
-var ocean = document.getElementById("ocean"),
-    waveWidth = 10,
-    waveCount = Math.floor(window.innerWidth/waveWidth),
-    docFrag = document.createDocumentFragment();
+$( document ).ready(function(){
+    $('.button-collapse').sideNav();
+    $(".dropdown-button-0").dropdown({hover:true});
+    $(".dropdown-button-1").dropdown({hover:true});
+    $(".dropdown-button-2").dropdown({hover:true});
+    $(".dropdown-button-3").dropdown({hover:true});
+    $(".dropdown-button-9").dropdown({hover:true});
 
-for(var i = 0; i < waveCount; i++){
-    var wave = document.createElement("div");
-    wave.className += " wave";
-    docFrag.appendChild(wave);
-    wave.style.left = i * waveWidth + "px";
-    wave.style.webkitAnimationDelay = (i/100) + "s";
-}
 
-ocean.appendChild(docFrag);
+})(jQuery);
+
 

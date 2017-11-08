@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserCommand saveUserCommand(UserCommand command) {
         User tempUser = userCommandToUser.convert(command);
-        User savedUser = userRepository.save(tempUser);
+        User savedUser = this.saveOrUpdate(tempUser);
         log.debug("Saved User ID: " + tempUser.getId());
         return userToUserCommand.convert(savedUser);
     }
