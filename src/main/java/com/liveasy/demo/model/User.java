@@ -41,7 +41,7 @@ public class User {
     private String lastName;
     private int active;
     private String description;
-
+    private String provider;
     @OneToOne(cascade = CascadeType.ALL)
     private VerificationToken verificationToken;
 
@@ -222,5 +222,13 @@ public class User {
     public void setPreference(Preference preference) {
         this.preference = preference;
         this.preference.setUser(this);
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
     }
 }

@@ -49,6 +49,7 @@ public class UserCommand {
     private Boolean enabled = true;
 
     private Preference preference;
+    private String provider;
 
     @Override
     public String toString() {

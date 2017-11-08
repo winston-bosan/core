@@ -79,6 +79,12 @@ public class Bootstraper implements ApplicationListener<ContextRefreshedEvent> {
         adminRole.setRole("ADMIN");
         roleService.saveOrUpdate(adminRole);
         log.info("Saved role" + adminRole.getRole());
+
+        Role facebookRole = new Role();
+        facebookRole.setRole("FACEBOOK_USER");
+        roleService.saveOrUpdate(facebookRole);
+        log.info("Saved role" + facebookRole.getRole());
+
     }
 
     private void assignUsersToUserRole() {

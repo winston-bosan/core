@@ -4,7 +4,6 @@ $( document ).ready(function(){
     $(".dropdown-button-1").dropdown({hover:true});
     $(".dropdown-button-2").dropdown({hover:true});
     $(".dropdown-button-3").dropdown({hover:true});
-    $(".dropdown-button-9").dropdown({hover:true});
 
 
 })(jQuery);
